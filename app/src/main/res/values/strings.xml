@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Food Order</string>
+    <string name="nav_food">Đồ ăn</string>
+    <string name="nav_cart">Giỏ hàng</string>
+    <string name="nav_feedback">Phản hồi</string>
+    <string name="nav_contact">Liên hệ</string>
+    <string name="nav_history">Lịch sử</string>
+
 </resources>
