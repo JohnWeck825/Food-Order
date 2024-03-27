@@ -1,4 +1,4 @@
-package com.example.foodorder.FragmentNav;
+package com.example.foodorder.fragment;
 
 import android.os.Bundle;
 
@@ -8,16 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.foodorder.R;
-import com.example.foodorder.databinding.FragmentHomeBinding;
+import com.example.foodorder.databinding.FragmentFeedbackBinding;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link FeedbackFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
-    FragmentHomeBinding homeBinding;
+public class FeedbackFragment extends Fragment {
+    FragmentFeedbackBinding feedbackBinding;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,7 +26,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public HomeFragment() {
+    public FeedbackFragment() {
         // Required empty public constructor
     }
 
@@ -37,11 +36,11 @@ public class HomeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
+     * @return A new instance of fragment FeedbackFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static FeedbackFragment newInstance(String param1, String param2) {
+        FeedbackFragment fragment = new FeedbackFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,9 +60,8 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        feedbackBinding=FragmentFeedbackBinding.inflate(inflater,container,false);
         // Inflate the layout for this fragment
-        homeBinding=FragmentHomeBinding.inflate(inflater, container, false);
-
-        return homeBinding.getRoot();
+        return feedbackBinding.getRoot();
     }
 }

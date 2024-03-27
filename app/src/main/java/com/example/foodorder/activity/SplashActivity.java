@@ -1,4 +1,4 @@
-package com.example.foodorder;
+package com.example.foodorder.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
-import com.example.foodorder.Login.LoginActivity;
+import com.example.foodorder.utils.Apputil;
+import com.example.foodorder.R;
 
 public class SplashActivity extends AppCompatActivity {
 

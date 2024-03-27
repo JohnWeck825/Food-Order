@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFE500"
-    tools:context=".FragmentNav.FeedbackFragment">
+    tools:context=".fragment.FeedbackFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

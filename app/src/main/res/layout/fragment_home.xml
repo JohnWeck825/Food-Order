@@ -5,4 +5,4 @@
     android:layout_height="match_parent"
     android:background="#8A0808"
     android:orientation="vertical"
-    tools:context=".FragmentNav.HomeFragment" />
+    tools:context=".fragment.HomeFragment" />

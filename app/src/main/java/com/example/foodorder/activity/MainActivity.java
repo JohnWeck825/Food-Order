@@ -1,4 +1,4 @@
-package com.example.foodorder;
+package com.example.foodorder.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,7 +6,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.foodorder.FragmentNav.ViewpagerAdapter;
+import com.example.foodorder.R;
+import com.example.foodorder.fragment.ViewpagerAdapter;
 import com.example.foodorder.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

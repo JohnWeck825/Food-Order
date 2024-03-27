@@ -1,4 +1,4 @@
-package com.example.foodorder.FragmentNav;
+package com.example.foodorder.fragment;
 
 import android.os.Bundle;
 
@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.foodorder.R;
 import com.example.foodorder.databinding.FragmentContactBinding;
 
 /**

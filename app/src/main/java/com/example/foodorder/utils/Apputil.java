@@ -1,4 +1,4 @@
-package com.example.foodorder;
+package com.example.foodorder.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
