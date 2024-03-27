@@ -1,4 +1,4 @@
-package com.example.foodorder;
+package com.example.foodorder.Login;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.foodorder.R;
 
 import java.util.Random;
 

@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_home"
+        android:title="@string/item_home"
+        android:icon="@drawable/baseline_home_24" />
+    <item android:id="@+id/action_cart"
+        android:title="@string/item_cart"
+        android:icon="@drawable/baseline_shopping_cart_24" />
+    <item android:id="@+id/action_fedback"
+        android:title="@string/item_fedback"
+        android:icon="@drawable/baseline_feedback_24" />
+    <item android:id="@+id/action_contact"
+        android:title="@string/item_contact"
+        android:icon="@drawable/baseline_perm_contact_calendar_24" />
+    <item android:id="@+id/action_history"
+        android:title="@string/item_history"
+        android:icon="@drawable/baseline_history_24" />
+</menu>

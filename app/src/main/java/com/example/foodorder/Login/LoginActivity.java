@@ -1,4 +1,4 @@
-package com.example.foodorder;
+package com.example.foodorder.Login;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,12 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.example.foodorder.MainActivity;
+import com.example.foodorder.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Set;
 
 public class LoginActivity extends AppCompatActivity {
     EditText edtuser,edtpass;
@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Toast.makeText(LoginActivity.this, "Authentication succesfull.",
                                         Toast.LENGTH_SHORT).show();
-                                Intent it =new Intent(LoginActivity.this,MainActivity.class);
+                                Intent it =new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(it);
                                 finish();
                             } else {
