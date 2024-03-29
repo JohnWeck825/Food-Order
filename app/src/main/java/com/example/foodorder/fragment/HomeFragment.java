@@ -79,14 +79,34 @@ public class HomeFragment extends Fragment {
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference dbReference=firebaseDatabase.getReference("food");
         mlstFood=new ArrayList<>();
-        Random rd=new Random();
-        int price=rd.nextInt(1000)+1000;
-        int sale=rd.nextInt(20);
-        for(int i=1;i<=20;i++){
-            Food food=new Food(i,"mon"+i,"aa",price,sale,0,0);
-            mlstFood.add(food);
-        }
-        dbReference.setValue(mlstFood);
+        dbReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mlstFood.clear();
+                for(DataSnapshot foodSnap:snapshot.getChildren()){
+                    Food food=foodSnap.getValue(Food.class);
+                    mlstFood.add(food);
+                }
+
+                for(int i=0;i<mlstFood.size();i++){
+                    Random rd=new Random();
+                    int price=rd.nextInt(1000)+100;
+                    int sale=rd.nextInt(20);
+                    mlstFood.get(i).setPrice(price);
+                    mlstFood.get(i).setSale(sale);
+
+                }
+                if(mlstFood.size()==20)
+                    dbReference.setValue(mlstFood);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
 

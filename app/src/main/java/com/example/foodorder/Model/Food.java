@@ -79,6 +79,6 @@ public class Food {
         this.totalPrice = totalPrice;
     }
     public int getPriceSale(){
-        return price*(sale/100);
+        return getPrice()- (getPrice()*getSale())/100;
     }
 }

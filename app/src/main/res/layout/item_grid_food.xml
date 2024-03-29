@@ -25,6 +25,8 @@
                 android:id="@+id/txtSaleoff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/define_dimen_10"
+                android:background="@color/colorPrimary"
                 android:layout_alignParentBottom="true"
                 android:text="TextView" />
 
