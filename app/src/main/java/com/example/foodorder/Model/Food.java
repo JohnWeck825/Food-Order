@@ -1,6 +1,12 @@
 package com.example.foodorder.Model;
 
-public class Food {
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import java.io.Serializable;
+@Entity(tableName = "tbFood")
+public class Food implements Serializable {
+    @PrimaryKey
     private int id;
     private String name;
     private String image;

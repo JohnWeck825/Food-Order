@@ -4,8 +4,8 @@
     android:id="@+id/layout_toolbar"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
-    android:background="@color/colorPrimary"
-    tools:ignore="ContentDescription" >
+    android:background="#025EFA"
+    tools:ignore="ContentDescription">
 
     <ImageView
         android:id="@+id/img_back"

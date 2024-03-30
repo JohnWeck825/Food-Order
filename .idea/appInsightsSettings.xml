@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.foodorder" />
-                  <option name="mobileSdkAppId" value="1:743795770482:android:129ec66fe603a6ebb06eeb" />
-                  <option name="projectId" value="food-order-ffe4d" />
-                  <option name="projectNumber" value="743795770482" />
+                  <option name="mobileSdkAppId" value="1:356345001903:android:3c05191e7b2024776b615a" />
+                  <option name="projectId" value="foodorder-e5595" />
+                  <option name="projectNumber" value="356345001903" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
