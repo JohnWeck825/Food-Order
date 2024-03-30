@@ -20,19 +20,20 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void loaddata() {
-        if(Apputil.isNetworkAvailable(this)){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent it=new Intent(SplashActivity.this, LoginActivity.class);
+                startActivity(it);
+                finish();
+            }
+        },2000);
+//        if(Apputil.isNetworkAvailable(this)){
 //            netword connected;
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent it=new Intent(SplashActivity.this, LoginActivity.class);
-                    startActivity(it);
-                    finish();
-                }
-            },2000);
-        }
-        else{
-            Toast.makeText(SplashActivity.this, "Network disconected!", Toast.LENGTH_SHORT).show();
-        }
+//
+//        }
+//        else{
+//            Toast.makeText(SplashActivity.this, "Network disconected!", Toast.LENGTH_SHORT).show();
+//        }
     }
 }
