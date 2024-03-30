@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "743795770482",
-    "project_id": "food-order-ffe4d",
-    "storage_bucket": "food-order-ffe4d.appspot.com"
+    "project_number": "356345001903",
+    "project_id": "foodorder-e5595",
+    "storage_bucket": "foodorder-e5595.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:743795770482:android:129ec66fe603a6ebb06eeb",
+        "mobilesdk_app_id": "1:356345001903:android:3c05191e7b2024776b615a",
         "android_client_info": {
           "package_name": "com.example.foodorder"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBNiigmSvk8PYyiRfr3q276dQ6vQGonh8M"
+          "current_key": "AIzaSyBpSvYl56uI2kMFD69gDCT8PI0bFSgm-Vk"
         }
       ],
       "services": {

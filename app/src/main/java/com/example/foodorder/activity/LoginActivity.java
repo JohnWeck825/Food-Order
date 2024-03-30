@@ -1,9 +1,12 @@
 package com.example.foodorder.activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -12,133 +15,124 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.foodorder.R;
+import com.example.foodorder.utils.Apputil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText edtuser,edtpass;
-    Button btnLogin;
-    ToggleButton toggleEye;
-    TextView txtCreatAccount,txtForgot;
-    private FirebaseAuth mAuth;
+    private TextInputEditText editEmail, editPassword;
+    private Button buttonSignIn, buttonSignUp;
+    private TextView forgotPassword;
+    private Apputil internetBroadcastReceiver;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mAuth=FirebaseAuth.getInstance();
-        MapId();
-        SetListener();
+        internetBroadcastReceiver = new Apputil();
+        initUi();
+        initListener();
     }
-    private void MapId(){
-        edtuser=findViewById(R.id.edtUsername);
-        edtpass=findViewById(R.id.edtPassword);
-        btnLogin=findViewById(R.id.btnLogin);
-        toggleEye=findViewById(R.id.toggleEye);
-        txtCreatAccount=findViewById(R.id.txtCreatAcc);
-        txtForgot=findViewById(R.id.txtForgot);
-    }
-    private void SetListener(){
-        toggleEye.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    toggleEye.setBackgroundResource(R.drawable.eyedash);
-                    edtpass.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
 
-                }
-                else{
-                    toggleEye.setBackgroundResource(R.drawable.eye);
-                    edtpass.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
-                }
-            }
-        });
-        txtCreatAccount.setOnClickListener(new View.OnClickListener() {
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(internetBroadcastReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(internetBroadcastReceiver);
+    }
+    private void initListener() {
+        buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent itOpenRegister=new Intent(LoginActivity.this,RegisterActivity.class);
-                startActivity(itOpenRegister);
+                onClickSignIn();
             }
 
         });
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CheckValidate();
+                onClickForgotPassword();
             }
         });
-        txtForgot.setOnClickListener(new View.OnClickListener() {
+        buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent itOpenForgotpass=new Intent(LoginActivity.this,ForgotpassActivity.class);
-                startActivity(itOpenForgotpass);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
-
-    }
-    boolean isEmail(EditText text) {
-        CharSequence email = text.getText().toString();
-        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 
-    boolean isEmpty(EditText text) {
-        CharSequence str = text.getText().toString();
-        return TextUtils.isEmpty(str);
+    private void onClickSignIn() {
+        String strEmail = editEmail.getText().toString().trim();
+        String strPassword = editPassword.getText().toString().trim();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth.signInWithEmailAndPassword(strEmail, strPassword)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) { //Xử lý kết quả đăng nhập
+                        if (task.isSuccessful()) {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finishAffinity();
+                        }
+                        else {
+                            Toast.makeText(LoginActivity.this, "Vui long kiem tra lai email va password",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+//                        if (strPassword.isEmpty()){
+//                            Toast.makeText(LoginActivity.this, "Vui long nhap password",
+//                                    Toast.LENGTH_SHORT).show();
+//                            return;
+//                        }
+//                        if (strEmail.isEmpty()){
+//                            Toast.makeText(LoginActivity.this, "Vui long nhap email",
+//                                    Toast.LENGTH_SHORT).show();
+//
+//                        }
+                    }
+                });
     }
-    void CheckValidate(){
-        boolean isValid = true;
-        if (isEmpty(edtuser)) {
-            edtuser.setError("You must enter username to login!");
-            isValid = false;
-        } else {
-            if (!isEmail(edtuser)) {
-                edtuser.setError("Enter valid email!");
-                isValid = false;
-            }
-        }
 
-        if (isEmpty(edtpass)) {
-            edtpass.setError("You must enter password to login!");
-            isValid = false;
-        } else {
-            if (edtpass.getText().toString().length() < 4) {
-                edtpass.setError("Password must be at least 4 chars long!");
-                isValid = false;
-            }
-        }
-
-        //check email and password
-        //IMPORTANT: here should be call to backend or safer function for local check; For example simple check is cool
-        //For example simple check is cool
-        if (isValid) {
-            String usernameValue = edtuser.getText().toString();
-            String passwordValue = edtpass.getText().toString();
-
-            mAuth.signInWithEmailAndPassword(usernameValue, passwordValue)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+    private void onClickForgotPassword() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String emailAddress = editEmail.getText().toString().trim();
+        if(emailAddress == null || emailAddress.toString().trim().isEmpty())
+            Toast.makeText(LoginActivity.this, "Vui long nhap email!", Toast.LENGTH_SHORT).show();
+        else{
+            auth.sendPasswordResetEmail(emailAddress)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                        public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Toast.makeText(LoginActivity.this, "Authentication succesfull.",
-                                        Toast.LENGTH_SHORT).show();
-                                Intent it =new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(it);
-                                finish();
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-
+                                Toast.makeText(LoginActivity.this, "Email sent!", Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(LoginActivity.this, "Email sent fail!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         }
+    }
+    private void initUi() {
+        editEmail = findViewById(R.id.edit_gmail);
+        editPassword = findViewById(R.id.edit_password);
+        buttonSignIn = findViewById(R.id.btn_sign_in);
+        buttonSignUp = findViewById(R.id.btn_sign_up);
+        forgotPassword = findViewById(R.id.txtForgot);
     }
 }

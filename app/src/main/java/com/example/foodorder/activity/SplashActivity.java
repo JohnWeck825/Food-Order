@@ -20,8 +20,8 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void loaddata() {
-        if(Apputil.isNewwordAvailable(this)){
-            //netword connected;
+        if(Apputil.isNetworkAvailable(this)){
+//            netword connected;
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
