@@ -21,6 +21,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.foodorder.R;
+import com.example.foodorder.utils.Apputil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -31,13 +32,13 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText editEmail, editPassword;
     private Button buttonSignIn, buttonSignUp;
     private TextView forgotPassword;
-//    private Internet internetBroadcastReceiver;
+    private Apputil internetBroadcastReceiver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        internetBroadcastReceiver = new Internet();
+        internetBroadcastReceiver = new Apputil();
         initUi();
         initListener();
     }
@@ -46,13 +47,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-//        registerReceiver(internetBroadcastReceiver, intentFilter);
+        registerReceiver(internetBroadcastReceiver, intentFilter);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        unregisterReceiver(internetBroadcastReceiver);
+        unregisterReceiver(internetBroadcastReceiver);
     }
     private void initListener() {
         buttonSignIn.setOnClickListener(new View.OnClickListener() {

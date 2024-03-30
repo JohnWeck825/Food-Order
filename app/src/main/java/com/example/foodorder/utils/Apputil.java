@@ -1,5 +1,6 @@
 package com.example.foodorder.utils;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-public class Apputil {
+public class Apputil extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if(ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
             if(isNetworkAvailable(context)) {
