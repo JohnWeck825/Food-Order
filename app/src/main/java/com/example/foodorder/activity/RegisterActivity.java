@@ -13,123 +13,72 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.foodorder.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText edtEmail,edtName,edtAddress,edtPass,edtPhone;
-    TextView txtHaveacc;
-    Button btnRegister;
-    ToggleButton toggleEye;
-    private FirebaseAuth mAuth;
+    private TextInputEditText editEmail, editPassword, Editname;
+    private Button buttonSignUp, buttonSignIn;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        MapId();
-        Setlistener();
+        initUi();
+        initListener();
     }
-    void MapId(){
-        edtEmail=findViewById(R.id.edtEmail);
-        edtName=findViewById(R.id.edtName);
-        edtAddress=findViewById(R.id.edtAddress);
-        edtPass=findViewById(R.id.edtPassword);
-        edtPhone=findViewById(R.id.edtPhone);
-        txtHaveacc=findViewById(R.id.txtHaveAcc);
-        btnRegister=findViewById(R.id.btnRegister);
-        toggleEye=findViewById(R.id.toggleEye);
-        mAuth = FirebaseAuth.getInstance();
-    }
-    void Setlistener(){
-        toggleEye.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    toggleEye.setBackgroundResource(R.drawable.eyedash);
-                    edtPass.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
 
-                }
-                else{
-                    toggleEye.setBackgroundResource(R.drawable.eye);
-                    edtPass.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
-                }
-            }
-        });
-        txtHaveacc.setOnClickListener(new View.OnClickListener() {
+    private void initListener() {
+        buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent itOpenRegister=new Intent(RegisterActivity.this,LoginActivity.class);
-                startActivity(itOpenRegister);
+                onClickSignUp();
             }
         });
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CheckValidate();
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
-    boolean isEmpty(EditText text) {
-        CharSequence str = text.getText().toString();
-        return TextUtils.isEmpty(str);
-    }
-    boolean isEmail(EditText text) {
-        CharSequence email = text.getText().toString();
-        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
-    }
-    private void CheckValidate() {
-        boolean successed=true;
-        if(isEmpty(edtEmail)){
-            Toast.makeText(this, "You must enter Email to register!", Toast.LENGTH_SHORT).show();
-            successed=false;
-        }
-        if(isEmpty(edtName)){
-            edtName.setError("Name is required!");
-            successed=false;
-        }
-        if(isEmpty(edtAddress)){
-            edtAddress.setError("Address is required!");
-            successed=false;
-        }
-        if(isEmpty(edtPhone)){
-            edtPhone.setError("Phone is required!");
-            successed=false;
-        }
-        if(isEmpty(edtPass)){
-            edtPass.setError("PassWord is required!");
-            successed=false;
 
-        }
-        if(isEmail(edtEmail)==false){
-            edtEmail.setError("Enter valid Email!");
-            successed=false;
-        }
-        if(successed==true) {
-
-            mAuth.createUserWithEmailAndPassword(edtEmail.getText().toString(), edtPass.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Toast.makeText(RegisterActivity.this, "Authentication successful.",
-                                        Toast.LENGTH_SHORT).show();
-                                Intent it = new Intent(RegisterActivity.this, LoginActivity.class);
-                                startActivity(it);
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Toast.makeText(RegisterActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-
-                            }
+    private void onClickSignUp() {
+        String strEmail = editEmail.getText().toString().trim();
+        String strPassword = editPassword.getText().toString().trim();
+        String strEditname = Editname.getText().toString().trim();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth.createUserWithEmailAndPassword(strEmail, strPassword)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finishAffinity();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(RegisterActivity.this, "Dang ki that bai.",
+                                    Toast.LENGTH_SHORT).show();
                         }
-                    });
-        }
+                    }
+                });
+    }
+    private void initUi(){
+        editEmail = findViewById(R.id.edit_gmail);
+        editPassword = findViewById(R.id.edit_password);
+        buttonSignUp = findViewById(R.id.signup);
+        buttonSignIn = findViewById(R.id.login);
+        Editname = findViewById(R.id.staff_name);
     }
 }
