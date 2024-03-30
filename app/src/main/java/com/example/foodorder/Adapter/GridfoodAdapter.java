@@ -1,31 +1,26 @@
 package com.example.foodorder.Adapter;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodorder.Constant;
-import com.example.foodorder.EventClickHandle.IonClickListioner;
+import com.example.foodorder.EventClickHandle.IonClickListener;
 import com.example.foodorder.Model.Food;
-import com.example.foodorder.activity.FoodDetailActivity;
 import com.example.foodorder.databinding.ItemGridFoodBinding;
 import com.example.foodorder.utils.GlideUtilis;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GridfoodAdapter extends RecyclerView.Adapter<GridfoodAdapter.ViewHolder>{
     List<Food> mlistFood;
     Activity context;
-    IonClickListioner onClickItem;
-    public GridfoodAdapter(List<Food> lstFood,IonClickListioner click) {
+    IonClickListener onClickItem;
+    public GridfoodAdapter(List<Food> lstFood, IonClickListener click) {
         this.mlistFood = lstFood;
         this.onClickItem=click;
         notifyDataSetChanged();

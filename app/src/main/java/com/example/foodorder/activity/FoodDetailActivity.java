@@ -46,7 +46,6 @@ public class FoodDetailActivity extends AppCompatActivity {
     }
     private void SetupLayout(){
         GlideUtilis.loadUrlImage(mfood.getImage(),foodDetailBinding.imgDisplay);
-        Toast.makeText(this,mfood.getName(),Toast.LENGTH_LONG).show();
         foodDetailBinding.tvName.setText(mfood.getName());
         foodDetailBinding.tvPrice.setText(mfood.getPrice()+ Constant.CURRENCY);
         foodDetailBinding.tvPrice.setPaintFlags(foodDetailBinding.tvName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
@@ -75,7 +74,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         TextView btnminus=viewDialog.findViewById(R.id.btn_minus);
         TextView btnplus=viewDialog.findViewById(R.id.btnplus);
         TextView number=viewDialog.findViewById(R.id.txt_number);
-        number.setText(mfood.getCount()+1+"");
+        number.setText(mfood.getCount()+"");
 
         GlideUtilis.loadUrlImage(mfood.getImage(),imgFood);
         name.setText(mfood.getName()+"");
@@ -90,6 +89,7 @@ public class FoodDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DatabaseFood.getInstance(FoodDetailActivity.this).foodDAO().insertFood(mfood);
+                Toast.makeText(FoodDetailActivity.this,"Added to Cart",Toast.LENGTH_LONG).show();
             }
         });
         btnminus.setOnClickListener(new View.OnClickListener() {
@@ -124,10 +124,14 @@ public class FoodDetailActivity extends AppCompatActivity {
     }
     private void SetStateBtnAddCart(){
         if(CheckFoodInCart()){
-            foodDetailBinding.btnAddcard.setActivated(false);
+            foodDetailBinding.btnAddcard.setText("Đã Thêm Vào Giỏ Hàng");
+            foodDetailBinding.btnAddcard.setBackgroundColor(R.color.unactive);
+//            foodDetailBinding.btnAddcard.setVisibility(View.GONE);
         }
         else {
-            foodDetailBinding.btnAddcard.setActivated(true);
+            foodDetailBinding.btnAddcard.setText("Thêm Vào Giỏ Hàng");
+            foodDetailBinding.btnAddcard.setBackgroundColor(R.color.active);
+            foodDetailBinding.btnAddcard.setVisibility(View.VISIBLE);
         }
     }
 }

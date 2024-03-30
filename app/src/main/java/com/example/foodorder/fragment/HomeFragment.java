@@ -11,15 +11,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
 import com.example.foodorder.Adapter.GridfoodAdapter;
 import com.example.foodorder.Constants.Frag;
-import com.example.foodorder.Database.DatabaseFood;
-import com.example.foodorder.EventClickHandle.IonClickListioner;
 import com.example.foodorder.Model.Food;
 import com.example.foodorder.activity.FoodDetailActivity;
 import com.example.foodorder.activity.MainActivity;
@@ -80,7 +76,6 @@ public class HomeFragment extends Fragment {
                 for(DataSnapshot foodSnap:snapshot.getChildren()){
                     Food food=foodSnap.getValue(Food.class);
                     mlstFood.add(food);
-
                 }
 
                 gridfoodAdapter=new GridfoodAdapter(mlstFood,(Food food)->{
@@ -122,6 +117,7 @@ public class HomeFragment extends Fragment {
                     int sale=rd.nextInt(20);
                     mlstFood.get(i).setPrice(price);
                     mlstFood.get(i).setSale(sale);
+                    mlstFood.get(i).setCount(1);
 
                 }
                 if(mlstFood.size()==20)

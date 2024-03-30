@@ -67,7 +67,6 @@
         android:id="@+id/btn_addcard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#08E68E"
         android:backgroundTint="#3F9F65"
         android:text="Thêm Vào Giỏ Hàng" />
 
