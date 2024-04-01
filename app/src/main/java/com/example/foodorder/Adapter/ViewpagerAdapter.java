@@ -1,9 +1,15 @@
-package com.example.foodorder.fragment;
+package com.example.foodorder.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.example.foodorder.fragment.CartFragment;
+import com.example.foodorder.fragment.ContactFragment;
+import com.example.foodorder.fragment.FeedbackFragment;
+import com.example.foodorder.fragment.HistoryFragment;
+import com.example.foodorder.fragment.HomeFragment;
 
 public class ViewpagerAdapter extends FragmentStateAdapter {
 
