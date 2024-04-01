@@ -27,8 +27,8 @@ android {
             )
         }
     }
-    buildFeatures{
-        viewBinding =true
+    buildFeatures {
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -56,7 +56,6 @@ dependencies {
 
     implementation("androidx.room:room-runtime:2.6.1")
     annotationProcessor("androidx.room:room-compiler:2.6.1")
-
 
 
 }

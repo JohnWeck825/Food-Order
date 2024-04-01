@@ -3,19 +3,14 @@ package com.example.foodorder.activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
-import android.window.OnBackInvokedDispatcher;
 
-import androidx.activity.OnBackPressedDispatcher;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
-import androidx.activity.ComponentActivity;
 
 import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.R;
-import com.example.foodorder.fragment.ViewpagerAdapter;
+import com.example.foodorder.Adapter.ViewpagerAdapter;
 import com.example.foodorder.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
