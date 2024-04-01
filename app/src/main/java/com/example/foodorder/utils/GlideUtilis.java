@@ -2,6 +2,7 @@ package com.example.foodorder.utils;
 
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.foodorder.R;
 import com.bumptech.glide.Glide;
 
@@ -17,4 +18,4 @@ public class GlideUtilis {
                 .dontAnimate()
                 .into(imageView);
     }
-}
+    }

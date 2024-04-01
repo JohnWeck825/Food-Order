@@ -5,4 +5,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FFD600</color>
+
+    <color name="gray">#C48F8C8C</color>
+    <color name="red">#F60002</color>
+
+    <color name="unactive">#535351</color>
+    <color name="active">#00FF00</color>
+
 </resources>

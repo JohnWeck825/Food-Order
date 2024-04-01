@@ -1,26 +1,28 @@
 package com.example.foodorder.Adapter;
 
-import android.content.Context;
+import android.app.Activity;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodorder.Constant;
+import com.example.foodorder.EventClickHandle.IonClickListener;
 import com.example.foodorder.Model.Food;
 import com.example.foodorder.databinding.ItemGridFoodBinding;
 import com.example.foodorder.utils.GlideUtilis;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GridfoodAdapter extends RecyclerView.Adapter<GridfoodAdapter.ViewHolder>{
-    ArrayList<Food> mlistFood;
-
-    public GridfoodAdapter(ArrayList<Food> lstFood) {
+    List<Food> mlistFood;
+    Activity context;
+    IonClickListener onClickItem;
+    public GridfoodAdapter(List<Food> lstFood, IonClickListener click) {
         this.mlistFood = lstFood;
+        this.onClickItem=click;
         notifyDataSetChanged();
     }
 
@@ -35,11 +37,16 @@ public class GridfoodAdapter extends RecyclerView.Adapter<GridfoodAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Food food=mlistFood.get(position);
         GlideUtilis.loadUrlImage(food.getImage(),holder.mItemGrid.imgFood);
-        holder.mItemGrid.txtSaleoff.setText(food.getSale()+"%");
+        holder.mItemGrid.txtSaleoff.setText("Sale off:"+food.getSale()+"% ");
         holder.mItemGrid.tvFoodname.setText(food.getName());
         holder.mItemGrid.tvprice.setText(food.getPrice()+ Constant.CURRENCY);
+        holder.mItemGrid.tvprice.setPaintFlags(holder.mItemGrid.tvprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         holder.mItemGrid.tvsaleprice.setText(food.getPriceSale()+Constant.CURRENCY);
+        holder.mItemGrid.layoutItem.setOnClickListener(v -> {
+            onClickItem.onclick(food);
+        });
     }
+    void action(){}
 
     @Override
     public int getItemCount() {

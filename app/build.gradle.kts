@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.foodorder"
-        minSdk = 31
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -27,8 +27,8 @@ android {
             )
         }
     }
-    buildFeatures{
-        viewBinding =true
+    buildFeatures {
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -55,6 +55,12 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("com.github.bumptech.glide:glide:4.11.0")
+    implementation("me.relex:circleindicator:2.1.6")
+
+    implementation("de.hdodenhof:circleimageview:3.0.0")
+
+    implementation("androidx.room:room-runtime:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
 
 
 }

@@ -1,13 +1,16 @@
 package com.example.foodorder.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.R;
-import com.example.foodorder.fragment.ViewpagerAdapter;
+import com.example.foodorder.Adapter.ViewpagerAdapter;
 import com.example.foodorder.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +23,30 @@ public class MainActivity extends AppCompatActivity {
         setUpViewPager();
 
     }
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        AlertDialog.Builder alert=new AlertDialog.Builder(MainActivity.this);
+        alert.setTitle("Thông Báo");
+        alert.setMessage("Bạn có muốn thoát?");
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alert.create().show();
+    }
+
     private void setUpViewPager(){
         mainBinding.viewPager.setUserInputEnabled(true);
         ViewpagerAdapter viewpagerAdapter= new ViewpagerAdapter(this);
@@ -72,13 +99,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void setToolBar(boolean isHome, String title) {
-        if (isHome) {
-            mainBinding.toolbar.layoutToolbar.setVisibility(View.GONE);
+    public void setToolBar(Frag value, String title) {
+        if (value==Frag.HOME) {
+            mainBinding.toolbarMain.layoutToolbar.setVisibility(View.GONE);
+
             return;
         }
-        mainBinding.toolbar.layoutToolbar.setVisibility(View.VISIBLE);
-        mainBinding.toolbar.tvTitle.setText(title);
+        if(value==Frag.CART){
+
+        }
+        mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
+        mainBinding.toolbarMain.tvTitle.setText(title);
     }
 
 }
