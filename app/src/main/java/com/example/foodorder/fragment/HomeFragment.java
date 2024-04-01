@@ -7,13 +7,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
 import java.util.Random;
+
+import com.example.foodorder.Adapter.FoodpopularAdapter;
 import com.example.foodorder.Adapter.GridfoodAdapter;
 import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.Model.Food;
@@ -33,7 +38,21 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding homeBinding;
     private List<Food> mlstFood;
     private GridfoodAdapter gridfoodAdapter;
-
+    private FoodpopularAdapter foodpopularAdapter;
+    private final Handler mHandlerBanner = new Handler(Looper.myLooper());
+    private final Runnable mRunnableBanner = new Runnable() {
+        @Override
+        public void run() {
+            if (mlstFood == null || mlstFood.isEmpty()) {
+                return;
+            }
+            if (homeBinding.viewPager2.getCurrentItem() == mlstFood.size() - 1) {
+                homeBinding.viewPager2.setCurrentItem(0);
+                return;
+            }
+            homeBinding.viewPager2.setCurrentItem(homeBinding.viewPager2.getCurrentItem() + 1);
+        }
+    };
 
 
     @Override
@@ -90,6 +109,7 @@ public class HomeFragment extends Fragment {
                 homeBinding.rcvGridfood.setLayoutManager(gridLayoutManager);
 
                 homeBinding.rcvGridfood.setAdapter(gridfoodAdapter);
+                SetupSlideImage();
             }
 
             @Override
@@ -98,6 +118,29 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+    private void SetupSlideImage() {
+        foodpopularAdapter=new FoodpopularAdapter(mlstFood,(Food food)->{
+            Bundle bundle=new Bundle();
+            bundle.putSerializable("food", food);
+            Intent it=new Intent(getActivity(), FoodDetailActivity.class);
+            it.putExtra("bundleFood",bundle);
+            startActivity(it);
+        });
+
+        homeBinding.viewPager2.setAdapter(foodpopularAdapter);
+        homeBinding.indicator3.setViewPager(homeBinding.viewPager2);
+
+        homeBinding.viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                mHandlerBanner.removeCallbacks(mRunnableBanner);
+                mHandlerBanner.postDelayed(mRunnableBanner, 3000);
+            }
+        });
+    }
+
     void AddFoodtoFirebase(){
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference dbReference=firebaseDatabase.getReference("food");
