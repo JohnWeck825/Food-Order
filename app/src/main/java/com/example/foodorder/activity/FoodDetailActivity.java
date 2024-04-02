@@ -1,5 +1,6 @@
 package com.example.foodorder.activity;
 
+import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -61,6 +62,8 @@ public class FoodDetailActivity extends AppCompatActivity {
     private void InitListener() {
         foodDetailBinding.toolbar.imgCart.setOnClickListener(v->AddtoCart());
         foodDetailBinding.btnAddcard.setOnClickListener(v->AddtoCart());
+        foodDetailBinding.toolbar.imgBack.setOnClickListener(v->onBackPressed());
+
     }
     private void AddtoCart(){
         @SuppressLint("InflateParams") View viewDialog = getLayoutInflater().inflate(R.layout.layout_bottom_sheet_cart, null);
@@ -134,4 +137,6 @@ public class FoodDetailActivity extends AppCompatActivity {
             foodDetailBinding.btnAddcard.setVisibility(View.VISIBLE);
         }
     }
+
+
 }

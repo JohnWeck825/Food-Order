@@ -2,6 +2,7 @@ package com.example.foodorder.activity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
@@ -25,27 +26,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        AlertDialog.Builder alert=new AlertDialog.Builder(MainActivity.this);
-        alert.setTitle("Thông Báo");
-        alert.setMessage("Bạn có muốn thoát?");
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        alert.create().show();
-    }
+    //    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        AlertDialog.Builder alert=new AlertDialog.Builder(MainActivity.this);
+//        alert.setTitle("Thông Báo");
+//        alert.setMessage("Bạn có muốn thoát?");
+//        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                finish();
+//            }
+//        });
+//        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+//        alert.create().show();
+//    }
 
     private void setUpViewPager(){
         mainBinding.viewPager.setUserInputEnabled(true);

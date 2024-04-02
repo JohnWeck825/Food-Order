@@ -25,7 +25,14 @@ public class GridfoodAdapter extends RecyclerView.Adapter<GridfoodAdapter.ViewHo
         this.onClickItem=click;
         notifyDataSetChanged();
     }
+    public List<Food> getListFood(){
+        return mlistFood;
+    }
 
+    public void setFilterList(List<Food> filterList){
+        this.mlistFood=filterList;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -32,7 +32,6 @@ public class SplashActivity extends AppCompatActivity {
                     preferences.setValueDownload(KEY,StateDownload.DOWLOADED);
                     Intent it=new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(it);
-
                     finish();
                 }
                 else{

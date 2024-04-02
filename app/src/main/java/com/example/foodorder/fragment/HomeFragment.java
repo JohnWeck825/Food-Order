@@ -1,20 +1,32 @@
 package com.example.foodorder.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
+import java.text.Normalizer;
 import java.util.List;
 import java.util.Random;
 
@@ -22,6 +34,7 @@ import com.example.foodorder.Adapter.FoodpopularAdapter;
 import com.example.foodorder.Adapter.GridfoodAdapter;
 import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.Model.Food;
+import com.example.foodorder.R;
 import com.example.foodorder.activity.FoodDetailActivity;
 import com.example.foodorder.activity.MainActivity;
 import com.example.foodorder.databinding.FragmentHomeBinding;
@@ -32,6 +45,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 
 public class HomeFragment extends Fragment {
@@ -39,7 +53,9 @@ public class HomeFragment extends Fragment {
     private List<Food> mlstFood;
     private GridfoodAdapter gridfoodAdapter;
     private FoodpopularAdapter foodpopularAdapter;
+    SearchView searchView;
     private final Handler mHandlerBanner = new Handler(Looper.myLooper());
+
     private final Runnable mRunnableBanner = new Runnable() {
         @Override
         public void run() {
@@ -58,16 +74,51 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
+
+
+
 
     @Override
     public View onCreateView(@Nullable LayoutInflater inflater,@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         homeBinding=FragmentHomeBinding.inflate(inflater, container, false);
-        GetFoodFromFirebase();
+
+        homeBinding.searchView.clearFocus();
+        homeBinding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                FiltetList(newText);
+                return true;
+            }
+        });
+
+        GetFoodFromFirebase("");
 //        AddFoodtoFirebase();
         return homeBinding.getRoot();
     }
+
+    private void FiltetList(String txt) {
+
+        List<Food> filterList=new ArrayList<>();
+        List<Food> rootList=gridfoodAdapter.getListFood();
+        for(Food food:rootList){
+            if(food.getName().toLowerCase().contains(txt.toLowerCase())){
+                filterList.add(food);
+            }
+        }
+        if(filterList.isEmpty()|| txt.isEmpty()){
+            GetFoodFromFirebase("");
+        }else{
+            gridfoodAdapter.setFilterList(filterList);
+        }
+    }
+
+
 
     @Override
     public void onResume() {
@@ -82,7 +133,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    void GetFoodFromFirebase(){
+    void GetFoodFromFirebase(String key){
         this.mlstFood=new ArrayList<>();
 
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
@@ -128,8 +179,10 @@ public class HomeFragment extends Fragment {
             startActivity(it);
         });
 
+        homeBinding.viewPager2.setPageTransformer(new CompositePageTransformer());
         homeBinding.viewPager2.setAdapter(foodpopularAdapter);
         homeBinding.indicator3.setViewPager(homeBinding.viewPager2);
+        homeBinding.indicator3.setClipToOutline(true);
 
         homeBinding.viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
