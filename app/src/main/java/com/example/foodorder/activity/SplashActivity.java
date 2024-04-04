@@ -3,7 +3,9 @@ package com.example.foodorder.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
@@ -15,16 +17,30 @@ import com.example.foodorder.R;
 
 public class SplashActivity extends AppCompatActivity {
     PreferenceDownload preferences;
+    private Apputil internetBroadcastReceiver;
     private String KEY="DOWLOAD_CHECK";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        internetBroadcastReceiver = new Apputil();
         loaddata();
     }
+    @Override
+    protected void onStart() { //Đăng ký bộ thu phát internet khi bắt đầu hoạt động
+        super.onStart();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(internetBroadcastReceiver, intentFilter);
+    }
 
+    @Override
+    protected void onDestroy() { // Hủy đăng ký bộ thu phát internet khi hủy hoạt động
+        super.onDestroy();
+        unregisterReceiver(internetBroadcastReceiver);
+    }
     private void loaddata() {
         preferences=new PreferenceDownload(this);
+        //luu trang thai nguoi dung o SharePreference
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -41,12 +57,6 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }
         },1000);
-//        if(Apputil.isNetworkAvailable(this)){
-//            netword connected;
-//
-//        }
-//        else{
-//            Toast.makeText(SplashActivity.this, "Network disconected!", Toast.LENGTH_SHORT).show();
-//        }
+
     }
 }
