@@ -105,6 +105,9 @@ public class HomeFragment extends Fragment {
     private void FiltetList(String txt) {
 
         List<Food> filterList=new ArrayList<>();
+        if(gridfoodAdapter==null){
+            return;
+        }
         List<Food> rootList=gridfoodAdapter.getListFood();
         for(Food food:rootList){
             if(food.getName().toLowerCase().contains(txt.toLowerCase())){
@@ -128,7 +131,7 @@ public class HomeFragment extends Fragment {
     }
     private void InitToolbar(){
         if(getActivity()!=null){
-        ((MainActivity)getActivity()).setToolBar(Frag.HOME,"Food");
+            ((MainActivity)getActivity()).setToolBar(Frag.HOME,"Food");
 
         }
     }
@@ -147,7 +150,6 @@ public class HomeFragment extends Fragment {
                     Food food=foodSnap.getValue(Food.class);
                     mlstFood.add(food);
                 }
-
                 gridfoodAdapter=new GridfoodAdapter(mlstFood,(Food food)->{
                     Bundle bundle=new Bundle();
                     bundle.putSerializable("food", food);
