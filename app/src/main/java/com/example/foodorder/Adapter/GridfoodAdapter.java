@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodorder.Constant;
+import com.example.foodorder.Constants.Constant;
 import com.example.foodorder.EventClickHandle.IonClickListener;
 import com.example.foodorder.Model.Food;
 import com.example.foodorder.databinding.ItemGridFoodBinding;

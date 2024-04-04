@@ -2,10 +2,14 @@
 <resources>
     <color name="colorPrimary">#00FFD9</color>
     <color name="blue">#00CCFF</color>
+    <color name="dark_blue">#1122c1</color>
+    <color name="dark_blue_2">#00306d</color>
+    <color name="light_blue">#9ee9fb</color>
+    <color name="light_blue_2">#00bdfa</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FFD600</color>
-
+    <color name="light_grey">#BDBDBD</color>
     <color name="gray">#C48F8C8C</color>
     <color name="red">#F60002</color>
 

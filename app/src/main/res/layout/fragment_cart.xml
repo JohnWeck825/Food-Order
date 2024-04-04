@@ -50,7 +50,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/define_dimen_10"
                     android:text="000 Vnđ"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/red"
                     android:textSize="@dimen/text_size_xnormal"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -63,7 +63,7 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/border"
                 android:padding="@dimen/define_dimen_12"
-                android:text="Đặt Hàng"
+                android:text="@string/order"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_normal" />
         </RelativeLayout>

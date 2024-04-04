@@ -1,19 +1,15 @@
 package com.example.foodorder.Adapter;
 
-import android.content.Context;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodorder.Constant;
+import com.example.foodorder.Constants.Constant;
 import com.example.foodorder.Model.Food;
 import com.example.foodorder.databinding.ItemCartBinding;
-import com.example.foodorder.databinding.ItemGridFoodBinding;
 import com.example.foodorder.utils.GlideUtilis;
 
 import java.util.List;
