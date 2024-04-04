@@ -58,7 +58,7 @@ public class HistoryFragment extends Fragment {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = firebaseUser.getUid();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("users").child(uid).child("order");
+        DatabaseReference databaseReference = firebaseDatabase.getReference("users").child(uid).child("orders");
         databaseReference.addChildEventListener(new ChildEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -113,5 +113,31 @@ public class HistoryFragment extends Fragment {
 
             }
         });
+
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @SuppressLint("NotifyDataSetChanged")
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot orderSnapshot : snapshot.getChildren()){
+//                    Order order = snapshot.getValue(Order.class);
+//                    if (order == null | historyList == null || historyList.isEmpty() || historyAdapter == null) {
+//                        return;
+//                    }
+//                    for (int i = 0; i < historyList.size(); i++) {
+//                        if (order.getId() == historyList.get(i).getId()) {
+//                            historyList.set(i, order);
+//                            break;
+//                        }
+//                    }
+//                    historyAdapter.notifyDataSetChanged();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
     }
 }

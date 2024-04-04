@@ -186,7 +186,7 @@ public class CartFragment extends Fragment {
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 String uid = firebaseUser.getUid();
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                DatabaseReference databaseReference = firebaseDatabase.getReference("users").child(uid).child("order");
+                DatabaseReference databaseReference = firebaseDatabase.getReference("users").child(uid).child("orders");
                 databaseReference.push().setValue(order).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
