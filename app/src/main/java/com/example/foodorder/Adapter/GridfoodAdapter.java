@@ -17,6 +17,7 @@ import com.example.foodorder.utils.GlideUtilis;
 import java.util.List;
 
 public class GridfoodAdapter extends RecyclerView.Adapter<GridfoodAdapter.ViewHolder>{
+//    public static  GridfoodAdapter ins;
     List<Food> mlistFood;
     Activity context;
     IonClickListener onClickItem;
