@@ -15,7 +15,7 @@
         android:layout_marginEnd="@dimen/define_dimen_6"
         android:padding="@dimen/define_dimen_10"
         android:src="@drawable/baseline_keyboard_backspace_24"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -35,7 +35,7 @@
         android:layout_marginEnd="@dimen/define_dimen_4"
         android:padding="@dimen/define_dimen_6"
         android:src="@drawable/baseline_shopping_cart_24"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
 </RelativeLayout>
 

@@ -42,5 +42,6 @@
     <string name="order">Đặt Hàng</string>
     <string name="history_order_id">Mã đơn hàng:</string>
     <string name="logout">Đăng xuất</string>
+    <string name="add_to_cart">Thêm Vào Giỏ Hàng</string>
 
 </resources>

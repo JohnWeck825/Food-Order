@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".fragment.HomeFragment">
@@ -11,7 +11,9 @@
     <RelativeLayout
         android:id="@+id/layout_search"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/light_blue_2"
+        android:layout_gravity="top">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
@@ -25,12 +27,11 @@
             app:iconifiedByDefault="false"
             app:queryHint="Search Food" />
 
-
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,13 +60,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"/>
+                android:orientation="vertical" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvGridfood"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#00FFD9" />
+                android:background="@drawable/food_order_background"
+                android:paddingTop="6dp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

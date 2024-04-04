@@ -60,7 +60,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     }
     private void InitListener() {
         foodDetailBinding.toolbar.imgCart.setOnClickListener(v->AddtoCart());
-        foodDetailBinding.btnAddcard.setOnClickListener(v->AddtoCart());
+        foodDetailBinding.btnAddCart.setOnClickListener(v->AddtoCart());
         foodDetailBinding.toolbar.imgBack.setOnClickListener(v->onBackPressed());
 
     }
@@ -128,9 +128,9 @@ public class FoodDetailActivity extends AppCompatActivity {
     }
     private void SetStateBtnAddCart(){
         if(CheckFoodInCart()){
-            foodDetailBinding.btnAddcard.setText("Đã Thêm Vào Giỏ Hàng");
-            foodDetailBinding.btnAddcard.setBackgroundResource(R.drawable.bg_btn_unactive);
-            foodDetailBinding.btnAddcard.setOnClickListener(new View.OnClickListener() {
+            foodDetailBinding.btnAddCart.setText("Đã Thêm Vào Giỏ Hàng");
+            foodDetailBinding.btnAddCart.setBackgroundResource(R.drawable.bg_btn_unactive);
+            foodDetailBinding.btnAddCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(FoodDetailActivity.this,"Đã có trong giỏ hàng",Toast.LENGTH_LONG).show();
@@ -142,11 +142,11 @@ public class FoodDetailActivity extends AppCompatActivity {
                     Toast.makeText(FoodDetailActivity.this,"Đã có trong giỏ hàng",Toast.LENGTH_LONG).show();
                 }
             });
-//            foodDetailBinding.btnAddcard.setVisibility(View.GONE);
+//            foodDetailBinding.btnAddCart.setVisibility(View.GONE);
         }
         else {
-            foodDetailBinding.btnAddcard.setText("Thêm Vào Giỏ Hàng");
-            foodDetailBinding.btnAddcard.setBackgroundResource(R.drawable.bg_btn_active);
+            foodDetailBinding.btnAddCart.setText("Thêm Vào Giỏ Hàng");
+            foodDetailBinding.btnAddCart.setBackgroundResource(R.drawable.bg_btn_active);
         }
     }
 
