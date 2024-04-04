@@ -1,6 +1,5 @@
 
-package com.example.foodorder.Database;
-
+package com.example.foodorder.Constants;
 
 public interface Constant {
 

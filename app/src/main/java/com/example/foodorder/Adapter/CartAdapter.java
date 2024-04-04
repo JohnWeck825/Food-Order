@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodorder.Database.Constant;
+
+import com.example.foodorder.Constants.Constant;
+
 import com.example.foodorder.Model.Food;
 import com.example.foodorder.databinding.ItemCartBinding;
 import com.example.foodorder.utils.GlideUtilis;

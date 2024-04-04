@@ -1,5 +1,6 @@
 package com.example.foodorder.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,60 +8,152 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.example.foodorder.Adapter.HistoryAdapter;
+import com.example.foodorder.Constants.Frag;
+import com.example.foodorder.Model.Order;
+import com.example.foodorder.activity.MainActivity;
 import com.example.foodorder.databinding.FragmentHistoryBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HistoryFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class HistoryFragment extends Fragment {
-    FragmentHistoryBinding historyBinding;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public HistoryFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HistoryFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HistoryFragment newInstance(String param1, String param2) {
-        HistoryFragment fragment = new HistoryFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private FragmentHistoryBinding fragmentHistoryBinding;
+    private List<Order> historyList;
+    private HistoryAdapter historyAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        historyBinding=FragmentHistoryBinding.inflate(inflater,container,false);
-        return historyBinding.getRoot();
+        fragmentHistoryBinding = FragmentHistoryBinding.inflate(inflater, container, false);
+        setupUI();
+        getListOrders();
+        return fragmentHistoryBinding.getRoot();
+    }
+
+    private void setupUI() {
+        if (getActivity() == null) {
+            return;
+        }
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        fragmentHistoryBinding.rcvOrderHistory.setLayoutManager(linearLayoutManager);
+
+        historyList = new ArrayList<>();
+        historyAdapter = new HistoryAdapter(historyList);
+        fragmentHistoryBinding.rcvOrderHistory.setAdapter(historyAdapter);
+    }
+
+    private void getListOrders() {
+        if (getActivity() == null) {
+            return;
+        }
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = firebaseUser.getUid();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("users").child(uid).child("orders");
+        databaseReference.addChildEventListener(new ChildEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Order order = snapshot.getValue(Order.class);
+                if (order == null | historyList == null || historyAdapter == null) {
+                    return;
+                }
+                historyList.add(0, order);
+                historyAdapter.notifyDataSetChanged();
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Order order = snapshot.getValue(Order.class);
+                if (order == null | historyList == null || historyList.isEmpty() || historyAdapter == null) {
+                    return;
+                }
+                for (int i = 0; i < historyList.size(); i++) {
+                    if (order.getId() == historyList.get(i).getId()) {
+                        historyList.set(i, order);
+                        break;
+                    }
+                }
+                historyAdapter.notifyDataSetChanged();
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                Order order = snapshot.getValue(Order.class);
+                if (order == null | historyList == null || historyList.isEmpty() || historyAdapter == null) {
+                    return;
+                }
+                for (Order orderObject : historyList) {
+                    if (order.getId() == orderObject.getId()) {
+                        historyList.remove(orderObject);
+                        break;
+                    }
+                }
+                historyAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @SuppressLint("NotifyDataSetChanged")
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot orderSnapshot : snapshot.getChildren()){
+//                    Order order = snapshot.getValue(Order.class);
+//                    if (order == null | historyList == null || historyList.isEmpty() || historyAdapter == null) {
+//                        return;
+//                    }
+//                    for (int i = 0; i < historyList.size(); i++) {
+//                        if (order.getId() == historyList.get(i).getId()) {
+//                            historyList.set(i, order);
+//                            break;
+//                        }
+//                    }
+//                    historyAdapter.notifyDataSetChanged();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initToolbar();
+    }
+
+    private void initToolbar() {
+        if (getActivity() != null) {
+            ((MainActivity) getActivity()).setToolBar(Frag.HISTORY, "Lịch sử");
+        }
     }
 }

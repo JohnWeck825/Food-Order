@@ -1,67 +1,94 @@
 package com.example.foodorder.fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.example.foodorder.Constants.Frag;
+import com.example.foodorder.Model.Feedback;
+import com.example.foodorder.activity.MainActivity;
 import com.example.foodorder.databinding.FragmentFeedbackBinding;
+import com.example.foodorder.function.ContactFunction;
+import com.example.foodorder.utils.StringUtils;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FeedbackFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.time.LocalDate;
+
 public class FeedbackFragment extends Fragment {
-    FragmentFeedbackBinding feedbackBinding;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentFeedbackBinding feedbackBinding;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    FirebaseAuth mAuth;
 
-    public FeedbackFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FeedbackFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FeedbackFragment newInstance(String param1, String param2) {
-        FeedbackFragment fragment = new FeedbackFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        feedbackBinding = FragmentFeedbackBinding.inflate(inflater, container, false);
+        feedbackBinding.tvSendFeedback.setOnClickListener(v -> onClickSendFeedback());
+        mAuth = FirebaseAuth.getInstance();
+        return feedbackBinding.getRoot();
+    }
+
+    private void onClickSendFeedback() {
+        if (getActivity() == null) {
+            return;
+        }
+
+        MainActivity mainActivity = (MainActivity) getActivity();
+
+        String fbName = feedbackBinding.feedbackName.getText().toString();
+        String fbPhone = feedbackBinding.feedbackPhone.getText().toString();
+        String fbEmail = feedbackBinding.feedbackEmail.getText().toString();
+        String fbComment = feedbackBinding.feedbackComment.getText().toString();
+
+        if (StringUtils.isEmpty(fbName)) {
+            ContactFunction.showToastMessage(mainActivity, "Vui lòng nhập Họ và Tên của bạn");
+        } else if (StringUtils.isEmpty(fbComment)) {
+            ContactFunction.showToastMessage(mainActivity, "Vui lòng nhập phản hồi của bạn");
+        } else {
+            LocalDate currentDate = LocalDate.now();
+            int day = currentDate.getDayOfMonth();
+            int month = currentDate.getMonthValue();
+            int year = currentDate.getYear();
+            String createDate = String.valueOf(day + "-" + month + "-" + year);
+            Feedback feedback = new Feedback(fbName, fbPhone, fbEmail, fbComment, createDate);
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReference = firebaseDatabase.getReference("feedback");
+            databaseReference.push().setValue(feedback).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    ContactFunction.showToastMessage(mainActivity, "ok");
+                    feedbackBinding.feedbackName.setText(null);
+                    feedbackBinding.feedbackPhone.setText(null);
+                    feedbackBinding.feedbackEmail.setText(null);
+                    feedbackBinding.feedbackComment.setText(null);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        feedbackBinding=FragmentFeedbackBinding.inflate(inflater,container,false);
-        // Inflate the layout for this fragment
-        return feedbackBinding.getRoot();
+    public void onResume() {
+        super.onResume();
+        initToolbar();
+    }
+
+    private void initToolbar() {
+        if (getActivity() != null) {
+            ((MainActivity) getActivity()).setToolBar(Frag.FEEDBACK, "Phản hồi");
+        }
     }
 }

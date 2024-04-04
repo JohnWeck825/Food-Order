@@ -13,7 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodorder.Database.Constant;
+import com.example.foodorder.Constants.Constant;
+
 import com.example.foodorder.Database.DatabaseFood;
 import com.example.foodorder.Model.Food;
 import com.example.foodorder.R;

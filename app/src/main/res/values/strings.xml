@@ -16,4 +16,30 @@
     <string name="forgot_password">Forgot Password</string>
     <string name="user_name">User name</string>
     <string name="Staff_name">Staff name</string>
+    <string name="order_details">Chi tiết đơn hàng</string>
+    <string name="_0_vnd">0 VND</string>
+    <string name="payment_methods">Phương thức thanh toán</string>
+    <string name="cash">Tiền mặt</string>
+    <string name="first_and_last_name">Họ và tên (*)</string>
+    <string name="first_and_last_name_2">Họ và tên:</string>
+    <string name="phone_number">Số điện thoại</string>
+    <string name="phone_number_2">Số điện thoại:</string>
+    <string name="delivery_address">Địa chỉ giao hàng</string>
+    <string name="delivery_address_2">Địa chỉ nhận hàng:</string>
+    <string name="cancel">Hủy bỏ</string>
+    <string name="order_cart">Đặt hàng</string>
+    <string name="facebook">Facebook</string>
+    <string name="hotline">Phone</string>
+    <string name="gmail">Mail</string>
+    <string name="youtube">Youtube</string>
+    <string name="dish_menu">Thực đơn:</string>
+    <string name="order_date">Ngày đặt hàng:</string>
+    <string name="total_price">Tổng tiền:</string>
+    <string name="payment">Thanh toán:</string>
+    <string name="zalo">Zalo</string>
+    <string name="feedback">Phản hồi (*)</string>
+    <string name="send_feedback">Gửi phản hồi</string>
+    <string name="order">Đặt Hàng</string>
+    <string name="history_order_id">Mã đơn hàng:</string>
+
 </resources>
