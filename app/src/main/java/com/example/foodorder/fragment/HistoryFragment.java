@@ -12,7 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.foodorder.Adapter.HistoryAdapter;
+import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.Model.Order;
+import com.example.foodorder.activity.MainActivity;
 import com.example.foodorder.databinding.FragmentHistoryBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -139,5 +141,17 @@ public class HistoryFragment extends Fragment {
 //            }
 //        });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initToolbar();
+    }
+
+    private void initToolbar() {
+        if (getActivity() != null) {
+            ((MainActivity) getActivity()).setToolBar(Frag.HISTORY, "Lịch sử");
+        }
     }
 }
