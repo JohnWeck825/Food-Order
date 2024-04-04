@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.BlendMode;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
@@ -92,7 +93,9 @@ public class FoodDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DatabaseFood.getInstance(FoodDetailActivity.this).foodDAO().insertFood(mfood);
+                SetStateBtnAddCart();
                 Toast.makeText(FoodDetailActivity.this,"Added to Cart",Toast.LENGTH_LONG).show();
+
             }
         });
         btnminus.setOnClickListener(new View.OnClickListener() {
@@ -128,13 +131,24 @@ public class FoodDetailActivity extends AppCompatActivity {
     private void SetStateBtnAddCart(){
         if(CheckFoodInCart()){
             foodDetailBinding.btnAddcard.setText("Đã Thêm Vào Giỏ Hàng");
-            foodDetailBinding.btnAddcard.setBackgroundColor(R.color.unactive);
+            foodDetailBinding.btnAddcard.setBackgroundResource(R.drawable.bg_btn_unactive);
+            foodDetailBinding.btnAddcard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(FoodDetailActivity.this,"Đã có trong giỏ hàng",Toast.LENGTH_LONG).show();
+                }
+            });
+            foodDetailBinding.toolbar.imgCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(FoodDetailActivity.this,"Đã có trong giỏ hàng",Toast.LENGTH_LONG).show();
+                }
+            });
 //            foodDetailBinding.btnAddcard.setVisibility(View.GONE);
         }
         else {
             foodDetailBinding.btnAddcard.setText("Thêm Vào Giỏ Hàng");
-            foodDetailBinding.btnAddcard.setBackgroundColor(R.color.active);
-            foodDetailBinding.btnAddcard.setVisibility(View.VISIBLE);
+            foodDetailBinding.btnAddcard.setBackgroundResource(R.drawable.bg_btn_active);
         }
     }
 

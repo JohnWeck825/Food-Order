@@ -63,12 +63,17 @@
             android:textSize="15sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_addcard"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/btnAddcard"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#3F9F65"
-        android:text="Thêm Vào Giỏ Hàng" />
+        android:layout_gravity="center"
+        android:background="@drawable/bg_btn_active"
+        android:padding="@dimen/define_dimen_10"
+        android:text="Thêm Vào Giỏ Hàng"
+        android:textAlignment="center"
+        android:textColor="#FF0099"
+        android:textSize="17sp" />
 
 
 </LinearLayout>
