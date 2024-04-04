@@ -13,13 +13,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.foodorder.Adapter.CartAdapter;
 import com.example.foodorder.Constants.Constant;
-
 import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.Database.DatabaseFood;
 import com.example.foodorder.Model.Food;
@@ -191,7 +186,7 @@ public class CartFragment extends Fragment {
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 String uid = firebaseUser.getUid();
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                DatabaseReference databaseReference = firebaseDatabase.getReference("users").child(uid).child("orders");
+                DatabaseReference databaseReference = firebaseDatabase.getReference("Account").child(uid).child("orders");
                 databaseReference.push().setValue(order).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {

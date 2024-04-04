@@ -62,7 +62,7 @@ public class HistoryFragment extends Fragment {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = firebaseUser.getUid();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("users").child(uid).child("orders");
+        DatabaseReference databaseReference = firebaseDatabase.getReference("Account").child(uid).child("orders");
         databaseReference.addChildEventListener(new ChildEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

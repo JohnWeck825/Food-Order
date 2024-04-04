@@ -1,8 +1,12 @@
 package com.example.foodorder.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,29 +16,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.ContextMenu;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
-
-import java.text.Normalizer;
-import java.util.List;
-import java.util.Random;
-
 import com.example.foodorder.Adapter.FoodpopularAdapter;
 import com.example.foodorder.Adapter.GridfoodAdapter;
 import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.Model.Food;
-import com.example.foodorder.R;
 import com.example.foodorder.activity.FoodDetailActivity;
 import com.example.foodorder.activity.MainActivity;
 import com.example.foodorder.databinding.FragmentHomeBinding;
@@ -45,7 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
+import java.util.List;
+import java.util.Random;
 
 
 public class HomeFragment extends Fragment {
@@ -126,7 +112,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        InitToolbar();
+        InitToolbar();
 
     }
     private void InitToolbar(){
