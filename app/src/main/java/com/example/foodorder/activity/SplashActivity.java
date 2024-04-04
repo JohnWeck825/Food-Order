@@ -1,24 +1,22 @@
 package com.example.foodorder.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodorder.Constants.StateDownload;
+import com.example.foodorder.R;
 import com.example.foodorder.SharePreference.PreferenceDownload;
 import com.example.foodorder.utils.Apputil;
-import com.example.foodorder.R;
 
 public class SplashActivity extends AppCompatActivity {
     PreferenceDownload preferences;
     private Apputil internetBroadcastReceiver;
-    private String KEY="DOWLOAD_CHECK";
+    private static String KEY="DOWLOAD_CHECK";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

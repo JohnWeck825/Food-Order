@@ -2,6 +2,7 @@
 package com.example.foodorder.Constants;
 
 public interface Constant {
+    String KEY="DOWLOAD_CHECK";
 
     String GENERIC_ERROR = "General error, please try again later";
     String CURRENCY = " 000 VNĐ";

@@ -1,10 +1,7 @@
 package com.example.foodorder.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.BlendMode;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodorder.Constants.Constant;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodorder.Constants.Constant;
 import com.example.foodorder.Database.DatabaseFood;
 import com.example.foodorder.Model.Food;
 import com.example.foodorder.R;
@@ -95,7 +93,7 @@ public class FoodDetailActivity extends AppCompatActivity {
                 DatabaseFood.getInstance(FoodDetailActivity.this).foodDAO().insertFood(mfood);
                 SetStateBtnAddCart();
                 Toast.makeText(FoodDetailActivity.this,"Added to Cart",Toast.LENGTH_LONG).show();
-
+                bottomSheetDialog.dismiss();
             }
         });
         btnminus.setOnClickListener(new View.OnClickListener() {
