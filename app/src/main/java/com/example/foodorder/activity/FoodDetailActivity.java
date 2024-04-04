@@ -1,6 +1,5 @@
 package com.example.foodorder.activity;
 
-import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -13,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodorder.Constant;
+import com.example.foodorder.Database.Constant;
 import com.example.foodorder.Database.DatabaseFood;
 import com.example.foodorder.Model.Food;
 import com.example.foodorder.R;

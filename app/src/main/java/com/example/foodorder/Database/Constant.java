@@ -1,4 +1,4 @@
-package com.example.foodorder;
+package com.example.foodorder.Database;
 
 public interface Constant {
 

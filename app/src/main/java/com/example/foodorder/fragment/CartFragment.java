@@ -10,17 +10,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.foodorder.Adapter.CartAdapter;
-import com.example.foodorder.Constant;
+import com.example.foodorder.Database.Constant;
 import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.Database.DatabaseFood;
 import com.example.foodorder.Model.Food;
 import com.example.foodorder.activity.MainActivity;
 import com.example.foodorder.databinding.FragmentCartBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CartFragment extends Fragment {
