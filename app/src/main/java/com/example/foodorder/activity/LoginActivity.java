@@ -35,30 +35,17 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText editEmail, editPassword;
     private Button buttonSignIn, buttonSignUp;
     private TextView forgotPassword;
-    private Apputil internetBroadcastReceiver;
+
     FirebaseAuth mAuth;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        internetBroadcastReceiver = new Apputil();
         mAuth = FirebaseAuth.getInstance();
         initUi();
         initListener();
     }
 
-    @Override
-    protected void onStart() { //Đăng ký bộ thu phát internet khi bắt đầu hoạt động
-        super.onStart();
-        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(internetBroadcastReceiver, intentFilter);
-    }
-
-    @Override
-    protected void onDestroy() { // Hủy đăng ký bộ thu phát internet khi hủy hoạt động
-        super.onDestroy();
-        unregisterReceiver(internetBroadcastReceiver);
-    }
     private void initListener() { //Thiết lập lắng nghe sự kiện
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
