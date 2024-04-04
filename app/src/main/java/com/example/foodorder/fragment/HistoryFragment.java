@@ -95,7 +95,7 @@ public class HistoryFragment extends Fragment {
                     return;
                 }
                 for (Order orderObject : historyList) {
-                    if(order.getId()==orderObject.getId()){
+                    if (order.getId() == orderObject.getId()) {
                         historyList.remove(orderObject);
                         break;
                     }
