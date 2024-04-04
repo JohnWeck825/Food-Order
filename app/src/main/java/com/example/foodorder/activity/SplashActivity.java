@@ -25,6 +25,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void loaddata() {
         preferences=new PreferenceDownload(this);
+        //luu trang thai nguoi dung o SharePreference
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -27,35 +27,39 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     private TextInputEditText editEmail, editPassword;
     private Button buttonSignIn, buttonSignUp;
     private TextView forgotPassword;
     private Apputil internetBroadcastReceiver;
-
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         internetBroadcastReceiver = new Apputil();
+        mAuth = FirebaseAuth.getInstance();
         initUi();
         initListener();
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart() { //Đăng ký bộ thu phát internet khi bắt đầu hoạt động
         super.onStart();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(internetBroadcastReceiver, intentFilter);
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy() { // Hủy đăng ký bộ thu phát internet khi hủy hoạt động
         super.onDestroy();
         unregisterReceiver(internetBroadcastReceiver);
     }
-    private void initListener() {
+    private void initListener() { //Thiết lập lắng nghe sự kiện
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,30 +86,25 @@ public class LoginActivity extends AppCompatActivity {
         String strEmail = editEmail.getText().toString().trim();
         String strPassword = editPassword.getText().toString().trim();
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        auth.signInWithEmailAndPassword(strEmail, strPassword)
+        auth.signInWithEmailAndPassword(strEmail, strPassword) //tra ve doi tuong task
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) { //Xử lý kết quả đăng nhập
+                        //phương thức này nhận một đối tượng Task<AuthResult> làm tham số. Đối tượng này chứa kết quả của tác vụ đăng nhập
                         if (task.isSuccessful()) {
+
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finishAffinity();
                         }
                         else {
-                            Toast.makeText(LoginActivity.this, "Vui long kiem tra lai email va password",
+                            Toast.makeText(LoginActivity.this, "Vui lòng kiểm tra lại email và password",
                                     Toast.LENGTH_SHORT).show();
                         }
-//                        if (strPassword.isEmpty()){
-//                            Toast.makeText(LoginActivity.this, "Vui long nhap password",
-//                                    Toast.LENGTH_SHORT).show();
-//                            return;
-//                        }
-//                        if (strEmail.isEmpty()){
-//                            Toast.makeText(LoginActivity.this, "Vui long nhap email",
-//                                    Toast.LENGTH_SHORT).show();
-//
-//                        }
                     }
+
+
+
                 });
     }
 
@@ -113,16 +112,17 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String emailAddress = editEmail.getText().toString().trim();
         if(emailAddress == null || emailAddress.toString().trim().isEmpty())
-            Toast.makeText(LoginActivity.this, "Vui long nhap email!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Vui lòng nhập email!", Toast.LENGTH_SHORT).show();
         else{
-            auth.sendPasswordResetEmail(emailAddress)
+            auth.sendPasswordResetEmail(emailAddress) //Gửi email đặt lại mật khẩu đến địa chỉ emailAddress. Phương thức này cũng trả về một Task
+
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Email sent!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Email đã được gửi!", Toast.LENGTH_SHORT).show();
                             }else {
-                                Toast.makeText(LoginActivity.this, "Email sent fail!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Email gửi thất bại!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
