@@ -1,5 +1,6 @@
 package com.example.foodorder.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +13,12 @@ import com.example.foodorder.Adapter.ContactAdapter;
 import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.Model.Contact;
 import com.example.foodorder.R;
+import com.example.foodorder.activity.LoginActivity;
 import com.example.foodorder.activity.MainActivity;
 import com.example.foodorder.databinding.FragmentContactBinding;
+import com.example.foodorder.function.ContactFunction;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,15 +28,29 @@ public class ContactFragment extends Fragment {
     private FragmentContactBinding mFragmentContactBinding;
     private ContactAdapter mContactAdapter;
 
+    FirebaseAuth mAuth;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mFragmentContactBinding = FragmentContactBinding.inflate(inflater, container, false);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        mFragmentContactBinding.tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                ContactFunction.showToastMessage(getActivity(), "Ok");
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+
+            }
+        });
 
         setUpUI();
         return mFragmentContactBinding.getRoot();
     }
+
 
     private void setUpUI() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);

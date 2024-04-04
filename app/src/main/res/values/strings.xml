@@ -41,5 +41,6 @@
     <string name="send_feedback">Gửi phản hồi</string>
     <string name="order">Đặt Hàng</string>
     <string name="history_order_id">Mã đơn hàng:</string>
+    <string name="logout">Đăng xuất</string>
 
 </resources>
