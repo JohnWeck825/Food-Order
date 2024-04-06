@@ -31,7 +31,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,16 +57,11 @@
                     app:ci_drawable_unselected="@drawable/bg_indicatior_unselected" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvGridfood"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/food_order_background"
+
                 android:paddingTop="6dp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
