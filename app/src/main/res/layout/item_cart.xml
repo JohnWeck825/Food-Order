@@ -14,6 +14,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/define_dimen_6"
         android:background="@color/white"
+        android:layout_marginEnd="@dimen/define_dimen_6"
         app:cardCornerRadius="@dimen/define_dimen_6"
         app:cardElevation="@dimen/define_dimen_8"
         app:strokeColor="@color/light_blue_2">
@@ -138,8 +139,8 @@
 
         <ImageButton
             android:id="@+id/tv_delete"
-            android:layout_width="70dp"
-            android:layout_height="80dp"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:background="@color/white"
