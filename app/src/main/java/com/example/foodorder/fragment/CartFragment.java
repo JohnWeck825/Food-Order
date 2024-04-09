@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -169,7 +170,10 @@ public class CartFragment extends Fragment {
         ImageButton tvCancelOrder = viewDialog.findViewById(R.id.tv_cancel_order);
         TextView tvCreateOrder = viewDialog.findViewById(R.id.tv_create_order);
         Spinner paymentSpinner = viewDialog.findViewById(R.id.payment_method_spn);
-
+        String[] PrLang = {"Tiền mặt", "Chuyển khoản"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, PrLang);
+//        adapter.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item);
+        paymentSpinner.setAdapter(adapter);
         tvFoodOrderDetail.setText(getStringFoodOrderList());
         tvOrderPrice.setText(cartBinding.tvTotalPrice.getText().toString());
 
@@ -179,6 +183,7 @@ public class CartFragment extends Fragment {
             String strOrderName = edtOrderName.getText().toString().trim();
             String strOrderPhone = edtOrderPhone.getText().toString().trim();
             String strOrderAddress = edtOrderAddress.getText().toString().trim();
+            String paymentMethod = paymentSpinner.getSelectedItem().toString();
 
             if (StringUtils.isEmpty(strOrderName) || StringUtils.isEmpty(strOrderPhone) || StringUtils.isEmpty(strOrderAddress)) {
                 ContactFunction.showToastMessage(getActivity(), "Vui lòng điền đầy đủ thông tin giao hàng!");
@@ -186,6 +191,8 @@ public class CartFragment extends Fragment {
                 long orderID = System.currentTimeMillis();
                 Order order = new Order(orderID, strOrderName, strOrderPhone, strOrderAddress,
                         amount, getStringFoodOrderList(), Constant.TYPE_PAYMENT_CASH);
+                Order order2 = new Order(orderID, strOrderName, strOrderPhone, strOrderAddress,
+                        amount, getStringFoodOrderList(), paymentMethod);
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 String uid = firebaseUser.getUid();
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -216,11 +223,11 @@ public class CartFragment extends Fragment {
         String orderResult = "";
         for (Food food : listFoods) {
             if (StringUtils.isEmpty(orderResult)) {
-                orderResult = food.getName() + " (" + food.getPrice() + Constant.CURRENCY + ") "
-                        + "- " + "Số lượng: " + food.getCount();
+                orderResult = "\n" + food.getName() + " (" + food.getPrice() + Constant.CURRENCY + ") "
+                        + "- " + "Số lượng: " + food.getCount() + "\n";
             } else {
                 orderResult = orderResult + "\n" + food.getName() + " (" + food.getPrice() + Constant.CURRENCY + ") "
-                        + "- " + "Số lượng: " + food.getCount();
+                        + "- " + "Số lượng: " + food.getCount() + "\n";
             }
         }
         return orderResult;

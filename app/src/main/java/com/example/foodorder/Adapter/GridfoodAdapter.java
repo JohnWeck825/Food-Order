@@ -46,7 +46,7 @@ public class GridfoodAdapter extends RecyclerView.Adapter<GridfoodAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Food food=mlistFood.get(position);
         GlideUtilis.loadUrlImage(food.getImage(),holder.mItemGrid.imgFood);
-        holder.mItemGrid.txtSaleoff.setText("Sale off:"+food.getSale()+"% ");
+        holder.mItemGrid.txtSaleoff.setText("Sale off: "+food.getSale()+"% ");
         holder.mItemGrid.tvFoodname.setText(food.getName());
         holder.mItemGrid.tvprice.setText(food.getPrice()+ Constant.CURRENCY);
         holder.mItemGrid.tvprice.setPaintFlags(holder.mItemGrid.tvprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);

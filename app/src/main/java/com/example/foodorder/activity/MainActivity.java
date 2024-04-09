@@ -21,13 +21,6 @@ import com.example.foodorder.R;
 import com.example.foodorder.SharePreference.PreferenceDownload;
 import com.example.foodorder.databinding.ActivityMainBinding;
 import com.example.foodorder.function.ContactFunction;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mainBinding;
@@ -139,10 +132,10 @@ public class MainActivity extends AppCompatActivity {
             mainBinding.toolbarMain.tvTitle.setText(title);
 //            mainBinding.txtUser.setVisibility(View.VISIBLE);
 
-            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-            String uid = firebaseUser.getUid();
-            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference = firebaseDatabase.getReference("Account").child(uid);
+//            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//            String uid = firebaseUser.getUid();
+//            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+//            DatabaseReference databaseReference = firebaseDatabase.getReference("Account").child(uid);
 //            databaseReference.addValueEventListener(new ValueEventListener() {
 //                @Override
 //                public void onDataChange(@NonNull DataSnapshot snapshot) {
