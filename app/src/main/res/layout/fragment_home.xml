@@ -12,8 +12,8 @@
         android:id="@+id/layout_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/light_blue_2"
-        android:layout_gravity="top">
+        android:layout_gravity="top"
+        android:background="@color/white">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
@@ -25,7 +25,8 @@
             android:layout_marginBottom="@dimen/define_dimen_20"
             android:background="@drawable/bg_white_shape_border"
             app:iconifiedByDefault="false"
-            app:queryHint="Search Food" />
+            app:queryHint="Search Food"
+            app:searchIcon="@drawable/search_icon" />
 
     </RelativeLayout>
 
@@ -43,25 +44,55 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewPager2"
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/define_dimen_200" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/define_dimen_2"
+                    android:layout_marginEnd="@dimen/define_dimen_2"
+                    android:elevation="@dimen/define_dimen_2"
+                    app:cardCornerRadius="@dimen/define_dimen_6"
+                    app:cardElevation="@dimen/define_dimen_4"
+                    app:strokeColor="@color/light_blue_2">
 
-                <me.relex.circleindicator.CircleIndicator3
-                    android:id="@+id/indicator_3"
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/viewPager2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/define_dimen_200" />
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/define_dimen_30"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    app:ci_drawable="@drawable/bg_indicatior_selected"
-                    app:ci_drawable_unselected="@drawable/bg_indicatior_unselected" />
+                    android:layout_marginTop="@dimen/define_dimen_2"
+                    android:layout_marginBottom="@dimen/define_dimen_2"
+                    android:elevation="@dimen/define_dimen_2"
+                    android:paddingStart="@dimen/define_dimen_2"
+                    android:paddingEnd="@dimen/define_dimen_2"
+                    app:cardCornerRadius="@dimen/define_dimen_80"
+                    app:cardElevation="@dimen/define_dimen_4"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp">
+
+                    <me.relex.circleindicator.CircleIndicator3
+                        android:id="@+id/indicator_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/define_dimen_30"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        app:ci_drawable="@drawable/bg_indicatior_selected"
+                        app:ci_drawable_unselected="@drawable/bg_indicatior_unselected" />
+                </com.google.android.material.card.MaterialCardView>
+
+
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvGridfood"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
+                android:background="@color/white"
                 android:paddingTop="6dp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
