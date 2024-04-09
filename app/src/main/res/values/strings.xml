@@ -35,6 +35,7 @@
     <string name="dish_menu">Thực đơn:</string>
     <string name="order_date">Ngày đặt hàng:</string>
     <string name="total_price">Tổng tiền:</string>
+    <string name="total_price_2">Tổng tiền</string>
     <string name="payment">Thanh toán:</string>
     <string name="zalo">Zalo</string>
     <string name="feedback">Phản hồi (*)</string>
@@ -43,5 +44,6 @@
     <string name="history_order_id">Mã đơn hàng:</string>
     <string name="logout">Đăng xuất</string>
     <string name="add_to_cart">Thêm Vào Giỏ Hàng</string>
+    <string name="menu_order">Thực đơn</string>
 
 </resources>
