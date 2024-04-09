@@ -76,7 +76,7 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/define_dimen_120"
+                android:layout_height="@dimen/define_dimen_100"
                 android:layout_below="@+id/tv_menu_order">
                 <TextView
                     android:id="@+id/food_order_details"
@@ -223,7 +223,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/define_dimen_16">
+        android:layout_marginBottom="@dimen/define_dimen_12">
 
         <TextView
             android:id="@+id/tv_create_order"
