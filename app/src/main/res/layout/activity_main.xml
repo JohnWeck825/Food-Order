@@ -10,21 +10,7 @@
     <include
         android:id="@+id/toolbar_main"
         layout="@layout/layout_toolbar"
-        android:visibility="invisible" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/option_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
-
-    <TextView
-        android:id="@+id/txt_User"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:visibility="visible" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

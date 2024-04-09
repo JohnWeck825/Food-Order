@@ -7,6 +7,14 @@
     android:background="#025EFA"
     tools:ignore="ContentDescription">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/option_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
     <ImageView
         android:id="@+id/img_back"
         android:layout_width="@dimen/define_dimen_45"
