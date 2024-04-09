@@ -39,7 +39,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tổng Tiên:"
+                    android:text="Tổng Tiền:"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_normal"
                     android:textStyle="bold" />

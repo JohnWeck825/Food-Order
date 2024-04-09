@@ -4,26 +4,27 @@
     android:id="@+id/layout_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:elevation="8dp"
-    app:cardCornerRadius="@dimen/define_dimen_10"
-    app:cardElevation="20dp">
+    android:layout_margin="6dp"
+    android:elevation="6dp"
+    app:cardCornerRadius="@dimen/define_dimen_6"
+    app:cardElevation="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/define_dimen_8"
-        android:orientation="vertical">
+        android:layout_margin="0dp"
+        android:orientation="vertical"
+        android:background="@color/white">
 
         <androidx.cardview.widget.CardView
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="0dp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/define_dimen_120">
+                android:layout_height="@dimen/define_dimen_160">
 
                 <ImageView
                     android:id="@+id/imgFood"
@@ -40,7 +41,7 @@
                     android:layout_marginBottom="@dimen/define_dimen_10"
                     android:background="@color/red"
                     android:text="TextView"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white" />
 
             </RelativeLayout>
 
@@ -49,12 +50,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_margin="@dimen/define_dimen_4"
+            android:orientation="vertical"
+            android:background="@color/white">
 
             <TextView
                 android:id="@+id/tv_foodname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/define_dimen_4"
                 android:text="TextView"
                 android:textColor="#F30958"
                 android:textSize="17sp"
@@ -64,16 +68,22 @@
                 android:id="@+id/tvprice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/define_dimen_4"
                 android:text="TextView"
                 android:textSize="13sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/tvsaleprice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/define_dimen_4"
+                android:layout_marginBottom="@dimen/define_dimen_4"
                 android:text="TextView"
-                android:textSize="17sp" />
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:textColor="#222222"/>
         </LinearLayout>
     </LinearLayout>
 
