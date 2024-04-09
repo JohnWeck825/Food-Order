@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group1">
+        <item
+            android:id="@+id/nav_menu"
+            android:icon="@drawable/menu_open"
+            android:title="Menu" />
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/baseline_home_24"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/baseline_shopping_cart_24"
+            android:title="Cart" />
+    </group>
+
+
+    <group android:id="@+id/group2">
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/baseline_perm_contact_calendar_24"
+            android:title="Contact" />
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/baseline_feedback_24"
+            android:title="FeedBack" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/baseline_history_24"
+            android:title="History" />
+    </group>
+
+
+</menu>

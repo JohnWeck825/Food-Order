@@ -28,6 +28,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Pattern;
+
 
 public class RegisterActivity extends AppCompatActivity {
     private TextInputEditText editEmail, editPassword, Editname; //bien luu tru
@@ -59,7 +61,20 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
+    private boolean isValidEmail(String email) {
+        if (email == null || email.isEmpty()) {
+            return false;
+        }
+        String regex = "^[a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
+        return Pattern.matches(regex, email);
+    }
+    private boolean isStrongPassword(String password) {
+        if (password == null || password.isEmpty()) {
+            return false;
+        }
+        return password.length() >= 6 &&
+                Pattern.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$", password);
+    }
     private void onClickSignUp() {
 //        DatabaseReference newAccountRef = accountRef.push();
         String strEmail = editEmail.getText().toString().trim(); //Lấy dữ liệu từ các trường nhập liệu
@@ -80,8 +95,12 @@ public class RegisterActivity extends AppCompatActivity {
                             startActivity(intent);
                             finishAffinity();
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Dang ki that bai.",
-                                    Toast.LENGTH_SHORT).show();
+                            if (!isValidEmail(strEmail)) {
+                                Toast.makeText(RegisterActivity.this, "Địa chỉ email không hợp lệ", Toast.LENGTH_SHORT).show();;
+                            }
+                            if (!isStrongPassword(strPassword)) {
+                                Toast.makeText(RegisterActivity.this, "Mật khẩu phải dài 6 kí tự", Toast.LENGTH_SHORT).show();;
+                            }
                         }
                     }
                 });
