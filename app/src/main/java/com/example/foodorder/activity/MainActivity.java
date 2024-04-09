@@ -13,11 +13,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.foodorder.Adapter.ViewpagerAdapter;
 import com.example.foodorder.Constants.Constant;
 import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.Constants.StateDownload;
 import com.example.foodorder.R;
-import com.example.foodorder.Adapter.ViewpagerAdapter;
 import com.example.foodorder.SharePreference.PreferenceDownload;
 import com.example.foodorder.databinding.ActivityMainBinding;
 import com.example.foodorder.function.ContactFunction;
