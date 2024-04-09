@@ -7,10 +7,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.foodorder.Constants.Constant;
@@ -39,15 +43,55 @@ public class MainActivity extends AppCompatActivity {
         setContentView(mainBinding.getRoot());
         setSupportActionBar(mainBinding.toolbarMain.optionToolbar);
         setUpViewPager();
-    }
+        SetupDrawerLayout();
 
+
+
+
+    }
+    void SetupDrawerLayout(){
+        mainBinding.drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+                mainBinding.drawerLayout.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
+        mainBinding.toolbarMain.btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "cccc", Toast.LENGTH_SHORT).show();
+                mainBinding.drawerLayout.setVisibility(View.VISIBLE);
+                mainBinding.drawerLayout.open();
+            }
+        });
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater=new MenuInflater(this);
         menuInflater.inflate(R.menu.option_menu,menu);
         return true;
     }
-
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // Clear the title of the action bar
+        getSupportActionBar().setTitle(""); // or getSupportActionBar().setTitle(null);
+        return super.onPrepareOptionsMenu(menu);
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -134,15 +178,16 @@ public class MainActivity extends AppCompatActivity {
         if (value == Frag.HOME) {
 
             mainBinding.toolbarMain.optionToolbar.setVisibility(View.VISIBLE);
-            mainBinding.toolbarMain.imgCart.setVisibility(View.GONE);
             mainBinding.toolbarMain.imgBack.setVisibility(View.GONE);
-            mainBinding.toolbarMain.tvTitle.setText(title);
-//            mainBinding.txtUser.setVisibility(View.VISIBLE);
 
-            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-            String uid = firebaseUser.getUid();
-            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference = firebaseDatabase.getReference("Account").child(uid);
+            mainBinding.toolbarMain.btnMenu.setVisibility(View.VISIBLE);
+            mainBinding.toolbarMain.imgCart.setVisibility(View.GONE);
+            //            mainBinding.txtUser.setVisibility(View.VISIBLE);
+
+//            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//            String uid = firebaseUser.getUid();
+//            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+//            DatabaseReference databaseReference = firebaseDatabase.getReference("Account").child(uid);
 //            databaseReference.addValueEventListener(new ValueEventListener() {
 //                @Override
 //                public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -156,29 +201,20 @@ public class MainActivity extends AppCompatActivity {
 //
 //                }
 //            });
-
-            return;
         }
         if (value == Frag.CART) {
-            mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
             mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
+            mainBinding.toolbarMain.btnMenu.setVisibility(View.GONE);
+            mainBinding.toolbarMain.imgBack.setVisibility(View.VISIBLE);
+            mainBinding.toolbarMain.imgCart.setVisibility(View.VISIBLE);
 
         }
-        if (value == Frag.FEEDBACK) {
-            mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
+        if (value == Frag.FEEDBACK ||value == Frag.CONTACT||value == Frag.HISTORY) {
             mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
-            mainBinding.toolbarMain.tvTitle.setText(title);
+            mainBinding.toolbarMain.btnMenu.setVisibility(View.GONE);
+            mainBinding.toolbarMain.imgBack.setVisibility(View.VISIBLE);
         }
-        if (value == Frag.CONTACT) {
-            mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
-            mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
-            mainBinding.toolbarMain.tvTitle.setText(title);
-        }
-        if (value == Frag.HISTORY) {
-            mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
-            mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
-            mainBinding.toolbarMain.tvTitle.setText(title);
-        }
+
         mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
         mainBinding.toolbarMain.tvTitle.setText(title);
     }
