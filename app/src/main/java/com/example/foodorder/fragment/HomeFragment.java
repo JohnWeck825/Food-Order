@@ -117,7 +117,7 @@ public class HomeFragment extends Fragment {
     }
     private void InitToolbar(){
         if(getActivity()!=null){
-            ((MainActivity)getActivity()).setToolBar(Frag.HOME,"Food");
+            ((MainActivity)getActivity()).setToolBar(Frag.HOME,"");
 
         }
     }

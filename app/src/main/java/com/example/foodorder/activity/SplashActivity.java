@@ -5,6 +5,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(preferences.getValueDownload(KEY)== StateDownload.FIRSTDOWLOAD.ordinal()){
+                if(preferences.getValueDownload(KEY) == StateDownload.FIRSTDOWLOAD.ordinal()){
                     preferences.setValueDownload(KEY,StateDownload.DOWLOADED);
                     Intent it=new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(it);

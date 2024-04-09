@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mainBinding.getRoot());
-        setSupportActionBar(mainBinding.optionToolbar);
+        setSupportActionBar(mainBinding.toolbarMain.optionToolbar);
         setUpViewPager();
     }
 
@@ -132,50 +132,52 @@ public class MainActivity extends AppCompatActivity {
 
     public void setToolBar(Frag value, String title) {
         if (value == Frag.HOME) {
-            mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
+
+            mainBinding.toolbarMain.optionToolbar.setVisibility(View.VISIBLE);
             mainBinding.toolbarMain.imgCart.setVisibility(View.GONE);
             mainBinding.toolbarMain.imgBack.setVisibility(View.GONE);
-            mainBinding.optionToolbar.setVisibility(View.VISIBLE);
-            mainBinding.txtUser.setVisibility(View.VISIBLE);
+            mainBinding.toolbarMain.tvTitle.setText(title);
+//            mainBinding.txtUser.setVisibility(View.VISIBLE);
 
             FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
             String uid = firebaseUser.getUid();
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("Account").child(uid);
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.exists()){
-                        mainBinding.txtUser.setText(snapshot.child("username").getValue(String.class));
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
+//            databaseReference.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    if(snapshot.exists()){
+//                        mainBinding.txtUser.setText(snapshot.child("username").getValue(String.class));
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
 
             return;
         }
         if (value == Frag.CART) {
             mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
-            mainBinding.optionToolbar.setVisibility(View.GONE);
+            mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
+
         }
         if (value == Frag.FEEDBACK) {
             mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
+            mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
             mainBinding.toolbarMain.tvTitle.setText(title);
-            mainBinding.optionToolbar.setVisibility(View.GONE);
         }
         if (value == Frag.CONTACT) {
             mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
+            mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
             mainBinding.toolbarMain.tvTitle.setText(title);
-            mainBinding.optionToolbar.setVisibility(View.GONE);
         }
         if (value == Frag.HISTORY) {
             mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
+            mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
             mainBinding.toolbarMain.tvTitle.setText(title);
-            mainBinding.optionToolbar.setVisibility(View.GONE);
         }
         mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
         mainBinding.toolbarMain.tvTitle.setText(title);
