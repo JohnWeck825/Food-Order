@@ -20,6 +20,7 @@ import com.example.foodorder.databinding.ActivityFoodDetailBinding;
 import com.example.foodorder.utils.GlideUtilis;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class FoodDetailActivity extends AppCompatActivity {
@@ -35,7 +36,6 @@ public class FoodDetailActivity extends AppCompatActivity {
         InitToolbar();
         InitListener();
         SetStateBtnAddCart();
-
     }
 
 
@@ -50,7 +50,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         foodDetailBinding.tvPrice.setText(mfood.getPrice()+ Constant.CURRENCY);
         foodDetailBinding.tvPrice.setPaintFlags(foodDetailBinding.tvName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         foodDetailBinding.tvPricesale.setText(mfood.getPriceSale()+ Constant.CURRENCY);
-        foodDetailBinding.tvSale.setText("Giảm giá" +mfood.getSale()+"%");
+        foodDetailBinding.tvSale.setText("Giảm giá " +mfood.getSale()+"%");
     }
     private void InitToolbar(){
         foodDetailBinding.toolbar.layoutToolbar.setVisibility(View.VISIBLE);
@@ -105,7 +105,9 @@ public class FoodDetailActivity extends AppCompatActivity {
                 count-=1;
                 number.setText(count+"");
                 mfood.setCount(count);
-                price.setText(mfood.getCount()*mfood.getPriceSale()+""+Constant.CURRENCY);
+                DecimalFormat decimalFormat = new DecimalFormat("#,###");
+                String fomatTotalprice = decimalFormat.format(mfood.getCount()*mfood.getPriceSale());
+                price.setText(fomatTotalprice+""+Constant.CURRENCY);
             }
         });
         btnplus.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +117,9 @@ public class FoodDetailActivity extends AppCompatActivity {
                 count+=1;
                 number.setText(count+"");
                 mfood.setCount(count);
-                price.setText(mfood.getCount()*mfood.getPriceSale()+Constant.CURRENCY);
+                DecimalFormat decimalFormat = new DecimalFormat("#,###");
+                String fomatTotalprice = decimalFormat.format(mfood.getCount()*mfood.getPriceSale());
+                price.setText(fomatTotalprice+""+Constant.CURRENCY);
             }
         });
 
