@@ -36,6 +36,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class CartFragment extends Fragment {
@@ -121,7 +122,9 @@ public class CartFragment extends Fragment {
         for (Food food : lst) {
             totalprice += food.getPriceSale() * food.getCount();
         }
-        cartBinding.tvTotalPrice.setText(totalprice + Constant.CURRENCY);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String fomatTotalprice = decimalFormat.format(totalprice);
+        cartBinding.tvTotalPrice.setText(fomatTotalprice + Constant.CURRENCY);
         amount = totalprice;
     }
 

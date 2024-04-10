@@ -13,13 +13,13 @@ public class PreferenceDownload {
         this.context = context;
     }
     public void setValueDownload(String key, StateDownload state){
-        SharedPreferences sharedPreferences=context.getSharedPreferences(SHARE_PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences=context.getSharedPreferences(SHARE_PREFERENCE, context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.putInt(key,state.ordinal());
         editor.apply();
     }
     public int getValueDownload(String key){
-        SharedPreferences sharedPreferences=context.getSharedPreferences(SHARE_PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences=context.getSharedPreferences(SHARE_PREFERENCE, context.MODE_PRIVATE);
         return sharedPreferences.getInt(key,StateDownload.FIRSTDOWLOAD.ordinal());
     }
 }

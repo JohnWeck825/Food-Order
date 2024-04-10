@@ -17,13 +17,13 @@ import com.example.foodorder.utils.Apputil;
 public class SplashActivity extends AppCompatActivity {
     PreferenceDownload preferences;
     private Apputil internetBroadcastReceiver;
-    private static String KEY="DOWLOAD_CHECK";
+    private static final String KEY="DOWNLOAD_CHECK";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        internetBroadcastReceiver = new Apputil();
         loaddata();
+        internetBroadcastReceiver = new Apputil();
     }
     @Override
     protected void onStart() { //Đăng ký bộ thu phát internet khi bắt đầu hoạt động

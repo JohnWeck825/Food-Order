@@ -14,6 +14,7 @@ import com.example.foodorder.Model.Food;
 import com.example.foodorder.databinding.ItemCartBinding;
 import com.example.foodorder.utils.GlideUtilis;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>{
@@ -42,7 +43,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>{
         GlideUtilis.loadUrlImage(food.getImage(), holder.itemCartBinding.imgFoodCart);
         holder.itemCartBinding.tvFoodNameCart.setText(food.getName().toString());
         holder.itemCartBinding.tvCount.setText(food.getCount()+"");
-        holder.itemCartBinding.tvFoodPriceCart.setText(food.getPriceSale()*food.getCount()+ Constant.CURRENCY);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String fomatprice = decimalFormat.format(food.getPriceSale()*food.getCount());
+        holder.itemCartBinding.tvFoodPriceCart.setText(fomatprice+ Constant.CURRENCY);
         holder.itemCartBinding.tvSubtract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +70,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>{
         });
         holder.itemCartBinding.tvDelete.setOnClickListener(v ->
             clickListener.clickDeteteFood(food, holder.getAdapterPosition()));
-
     }
 
     @Override
