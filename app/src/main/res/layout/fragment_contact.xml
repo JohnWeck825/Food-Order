@@ -50,6 +50,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
+
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/avatar_1"
                             android:layout_width="@dimen/define_dimen_80"
@@ -62,12 +63,14 @@
                             app:strokeColor="@color/light_green">
 
                             <ImageView
-                                android:layout_width="@dimen/define_dimen_80"
-                                android:layout_height="@dimen/define_dimen_80"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/white"
                                 android:src="@drawable/elephant_avatar" />
                         </com.google.android.material.card.MaterialCardView>
 
                         <TextView
+                            android:id="@+id/avatar_member_name_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/define_dimen_12"
@@ -76,39 +79,104 @@
                             android:text="@string/tong_anh_tuan_ceo"
                             android:textColor="@color/item_grid_food_price"
                             android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/avatar_member_name_1"
+                            android:layout_marginStart="@dimen/define_dimen_12"
+                            android:layout_toEndOf="@id/avatar_1"
+                            android:text="@string/about_member_1"
+                            android:textSize="12sp" />
                     </RelativeLayout>
 
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/avatar_2"
-                        android:layout_width="@dimen/define_dimen_40"
-                        android:layout_height="@dimen/define_dimen_40"
-                        android:layout_marginStart="@dimen/define_dimen_10"
-                        android:layout_marginTop="@dimen/define_dimen_10"
-                        android:layout_marginBottom="@dimen/define_dimen_10"
-                        app:cardCornerRadius="@dimen/define_dimen_80"
-                        app:strokeColor="@color/light_blue_2">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                        <ImageView
-                            android:layout_width="@dimen/define_dimen_40"
-                            android:layout_height="@dimen/define_dimen_40"
-                            android:src="@drawable/goat_avatar" />
-                    </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/avatar_2"
+                            android:layout_width="@dimen/define_dimen_80"
+                            android:layout_height="@dimen/define_dimen_80"
+                            android:layout_marginStart="@dimen/define_dimen_10"
+                            android:layout_marginTop="@dimen/define_dimen_10"
+                            android:layout_marginBottom="@dimen/define_dimen_10"
+                            app:cardCornerRadius="@dimen/define_dimen_80"
+                            app:cardElevation="@dimen/define_dimen_10"
+                            app:strokeColor="@color/light_blue_2">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/avatar_3"
-                        android:layout_width="@dimen/define_dimen_40"
-                        android:layout_height="@dimen/define_dimen_40"
-                        android:layout_marginStart="@dimen/define_dimen_10"
-                        android:layout_marginTop="@dimen/define_dimen_10"
-                        android:layout_marginBottom="@dimen/define_dimen_10"
-                        app:cardCornerRadius="@dimen/define_dimen_80">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/white"
+                                android:src="@drawable/goat_avatar" />
+                        </com.google.android.material.card.MaterialCardView>
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/cat_avatar_4" />
-                    </com.google.android.material.card.MaterialCardView>
+                        <TextView
+                            android:id="@+id/avatar_member_name_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/define_dimen_12"
+                            android:layout_marginTop="@dimen/define_dimen_10"
+                            android:layout_toEndOf="@id/avatar_2"
+                            android:text="@string/tran_nguyen_duc_nam"
+                            android:textColor="@color/item_grid_food_price"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/avatar_member_name_2"
+                            android:layout_marginStart="@dimen/define_dimen_12"
+                            android:layout_toEndOf="@id/avatar_2"
+                            android:text="@string/about_member_2"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/avatar_3"
+                            android:layout_width="@dimen/define_dimen_80"
+                            android:layout_height="@dimen/define_dimen_80"
+                            android:layout_marginStart="@dimen/define_dimen_10"
+                            android:layout_marginTop="@dimen/define_dimen_10"
+                            android:layout_marginBottom="@dimen/define_dimen_10"
+                            app:cardCornerRadius="@dimen/define_dimen_80"
+                            app:cardElevation="@dimen/define_dimen_10"
+                            app:strokeColor="@color/red">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/white"
+                                android:src="@drawable/cat_avatar_4" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/avatar_member_name_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/define_dimen_12"
+                            android:layout_marginTop="@dimen/define_dimen_10"
+                            android:layout_toEndOf="@id/avatar_3"
+                            android:text="@string/nguyen_chi_quyen"
+                            android:textColor="@color/item_grid_food_price"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/avatar_member_name_3"
+                            android:layout_marginStart="@dimen/define_dimen_12"
+                            android:layout_toEndOf="@id/avatar_3"
+                            android:text="@string/about_member_3"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
 
