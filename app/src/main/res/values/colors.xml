@@ -13,7 +13,7 @@
     <color name="gray">#C48F8C8C</color>
     <color name="light_gray">#8F8C8C</color>
     <color name="red">#F60002</color>
-
+    <color name="item_grid_food_price">#49454f</color>
     <color name="unactive">#535351</color>
     <color name="active">#00FF00</color>
 

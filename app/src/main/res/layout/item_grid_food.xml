@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
-        android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
 
@@ -34,6 +34,8 @@
                     android:src="@drawable/img9" />
 
                 <TextView
+                    android:paddingStart="@dimen/define_dimen_2"
+                    android:layout_marginStart="@dimen/define_dimen_2"
                     android:id="@+id/txtSaleoff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,8 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/define_dimen_4"
-            android:orientation="vertical"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_foodname"
@@ -70,9 +72,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/define_dimen_4"
                 android:text="TextView"
+                android:textColor="@color/black"
                 android:textSize="13sp"
-                android:textStyle="italic"
-                android:textColor="@color/black"/>
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/tvsaleprice"
@@ -81,9 +83,9 @@
                 android:layout_marginTop="@dimen/define_dimen_4"
                 android:layout_marginBottom="@dimen/define_dimen_4"
                 android:text="TextView"
-                android:textStyle="bold"
                 android:textSize="17sp"
-                android:textColor="#222222"/>
+                android:textStyle="bold"
+                android:textColor="@color/item_grid_food_price"/>
         </LinearLayout>
     </LinearLayout>
 

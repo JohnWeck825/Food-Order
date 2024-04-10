@@ -7,13 +7,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -25,13 +23,6 @@ import com.example.foodorder.R;
 import com.example.foodorder.SharePreference.PreferenceDownload;
 import com.example.foodorder.databinding.ActivityMainBinding;
 import com.example.foodorder.function.ContactFunction;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mainBinding;
@@ -178,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
 
             mainBinding.toolbarMain.optionToolbar.setVisibility(View.VISIBLE);
             mainBinding.toolbarMain.imgBack.setVisibility(View.GONE);
+
 
             mainBinding.toolbarMain.btnMenu.setVisibility(View.VISIBLE);
             mainBinding.toolbarMain.imgCart.setVisibility(View.GONE);

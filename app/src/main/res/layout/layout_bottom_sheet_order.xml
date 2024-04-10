@@ -1,46 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bottom_sheet_cart"
     android:orientation="vertical"
     android:padding="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/define_dimen_14">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/define_dimen_4"
+            android:elevation="@dimen/define_dimen_8"
+            app:cardCornerRadius="@dimen/define_dimen_100"
+            app:cardElevation="@dimen/define_dimen_4"
+            app:strokeColor="@color/light_blue_2">
+
+            <ImageButton
+                android:id="@+id/tv_cancel_order"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:background="@color/white"
+                android:gravity="center"
+                android:padding="@dimen/define_dimen_10"
+                android:src="@drawable/arrow_back"
+                android:textSize="16sp" />
+        </com.google.android.material.card.MaterialCardView>
+
 
         <TextView
             android:id="@+id/order_details"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:text="@string/order_details"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/order_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="@string/_0_vnd"
-            android:textColor="@color/red"
+            android:layout_centerInParent="true"
+            android:text="@string/order_details"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/food_order_details"
-        android:layout_width="wrap_content"
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textSize="14sp" />
+        android:layout_margin="@dimen/define_dimen_4"
+        android:layout_marginTop="@dimen/define_dimen_10"
+        android:elevation="@dimen/define_dimen_2"
+        app:cardCornerRadius="@dimen/define_dimen_20"
+        app:cardElevation="@dimen/define_dimen_4"
+        app:strokeColor="@color/light_blue_2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_menu_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/edt_food_order_menu"
+                android:fontFamily="@font/roboto_mono_bold"
+                android:gravity="center"
+                android:padding="@dimen/define_dimen_6"
+                android:text="@string/menu_order"
+                android:textColor="@color/white"
+                android:textSize="@dimen/define_dimen_16" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/define_dimen_100"
+                android:layout_below="@+id/tv_menu_order">
+                <TextView
+                    android:id="@+id/food_order_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/define_dimen_120"
+                    android:background="@drawable/edt_food_order_details"
+                    android:padding="@dimen/define_dimen_6"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </ScrollView>
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/payment_methods"
+        android:textColor="@color/black"
         android:textSize="14sp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/define_dimen_10"
+        android:elevation="@dimen/define_dimen_2"
+        android:visibility="gone"
+        app:cardCornerRadius="@dimen/define_dimen_8"
+        app:strokeColor="@color/light_blue_2">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <Spinner
+                android:id="@+id/payment_method_spn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:pointerIcon="alias" />
+        </androidx.cardview.widget.CardView>
+
+    </com.google.android.material.card.MaterialCardView>
+
 
     <TextView
         android:layout_width="match_parent"
@@ -48,13 +131,15 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/txtv_bg"
         android:padding="12dp"
-        android:text="@string/cash" />
+        android:text="@string/cash"
+        android:textColor="@color/black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/first_and_last_name"
+        android:textColor="@color/black"
         android:textSize="14sp" />
 
     <EditText
@@ -63,14 +148,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@drawable/edt_bg"
+        android:imeOptions="actionNext"
         android:padding="12dp"
-        android:imeOptions="actionNext"/>
+        android:textColor="@color/black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/phone_number"
+        android:textColor="@color/black"
         android:textSize="14sp" />
 
     <EditText
@@ -79,44 +166,64 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@drawable/edt_bg"
-        android:padding="12dp"
         android:imeOptions="actionNext"
-        android:inputType="phone"/>
+        android:inputType="phone"
+        android:padding="12dp"
+        android:textColor="@color/black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/delivery_address"
+        android:textColor="@color/black"
         android:textSize="14sp" />
 
     <EditText
         android:id="@+id/order_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edt_bg"
-        android:padding="12dp"
         android:layout_marginTop="5dp"
-        android:imeOptions="actionDone"/>
+        android:background="@drawable/edt_bg"
+        android:imeOptions="actionDone"
+        android:padding="12dp"
+        android:textColor="@color/black" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/define_dimen_20"
+        android:layout_marginBottom="@dimen/define_dimen_20">
+
+        <TextView
+            android:layout_width="@dimen/define_dimen_200"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/define_dimen_4"
+            android:text="@string/total_price_2"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/order_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/define_dimen_4"
+            android:text="@string/_0_vnd"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="16dp">
-
-        <TextView
-            android:id="@+id/tv_cancel_order"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/define_dimen_10"
-            android:layout_weight="1"
-            android:background="@drawable/edt_cancel_bg"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="@string/cancel"
-            android:textSize="16sp" />
+        android:layout_marginBottom="@dimen/define_dimen_12">
 
         <TextView
             android:id="@+id/tv_create_order"
@@ -128,6 +235,7 @@
             android:padding="10dp"
             android:text="@string/order_cart"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

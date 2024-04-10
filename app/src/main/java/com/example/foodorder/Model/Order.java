@@ -8,6 +8,8 @@ public class Order {
     private int amount;
     private String foods;
     private int payment;
+
+    private String paymentMethod;
     public Order() {
     }
     public Order(long id, String name, String phone, String address, int amount, String foods, int payment) {
@@ -18,6 +20,16 @@ public class Order {
         this.amount = amount;
         this.foods = foods;
         this.payment = payment;
+    }
+
+    public Order(long id, String name, String phone, String address, int amount, String foods, String paymentMethod) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.amount = amount;
+        this.foods = foods;
+        this.paymentMethod = paymentMethod;
     }
 
     public long getId() {
