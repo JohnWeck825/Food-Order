@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,48 +8,134 @@
     android:orientation="vertical"
     tools:context=".fragment.ContactFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_contact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@color/white" />
-
-    <TextView
-        android:id="@+id/tv_logout"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/txtv_bg_2"
-        android:gravity="center"
-        android:padding="12dp"
-        android:text="@string/logout"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        tools:visibility="gone" />
-
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/about_us_img"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/define_dimen_180"
-                android:src="@drawable/food_delivery" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/about_us_img"
-            android:text="@string/about_us_title" />
-    </RelativeLayout>
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/define_dimen_180"
+                    android:src="@drawable/food_delivery" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/define_dimen_8"
+                    android:text="@string/about_us_title" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/define_dimen_10"
+                    android:padding="@dimen/define_dimen_8"
+                    android:text="@string/managements" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/avatar_1"
+                            android:layout_width="@dimen/define_dimen_80"
+                            android:layout_height="@dimen/define_dimen_80"
+                            android:layout_marginStart="@dimen/define_dimen_10"
+                            android:layout_marginTop="@dimen/define_dimen_10"
+                            android:layout_marginBottom="@dimen/define_dimen_10"
+                            app:cardCornerRadius="@dimen/define_dimen_80"
+                            app:cardElevation="@dimen/define_dimen_10"
+                            app:strokeColor="@color/light_green">
+
+                            <ImageView
+                                android:layout_width="@dimen/define_dimen_80"
+                                android:layout_height="@dimen/define_dimen_80"
+                                android:src="@drawable/elephant_avatar" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/define_dimen_12"
+                            android:layout_marginTop="@dimen/define_dimen_10"
+                            android:layout_toEndOf="@id/avatar_1"
+                            android:text="@string/tong_anh_tuan_ceo"
+                            android:textColor="@color/item_grid_food_price"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/avatar_2"
+                        android:layout_width="@dimen/define_dimen_40"
+                        android:layout_height="@dimen/define_dimen_40"
+                        android:layout_marginStart="@dimen/define_dimen_10"
+                        android:layout_marginTop="@dimen/define_dimen_10"
+                        android:layout_marginBottom="@dimen/define_dimen_10"
+                        app:cardCornerRadius="@dimen/define_dimen_80"
+                        app:strokeColor="@color/light_blue_2">
+
+                        <ImageView
+                            android:layout_width="@dimen/define_dimen_40"
+                            android:layout_height="@dimen/define_dimen_40"
+                            android:src="@drawable/goat_avatar" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/avatar_3"
+                        android:layout_width="@dimen/define_dimen_40"
+                        android:layout_height="@dimen/define_dimen_40"
+                        android:layout_marginStart="@dimen/define_dimen_10"
+                        android:layout_marginTop="@dimen/define_dimen_10"
+                        android:layout_marginBottom="@dimen/define_dimen_10"
+                        app:cardCornerRadius="@dimen/define_dimen_80">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/cat_avatar_4" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_logout"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/txtv_bg_2"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="@string/logout"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:visibility="gone" />
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
 </LinearLayout>
