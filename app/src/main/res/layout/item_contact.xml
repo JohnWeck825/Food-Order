@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="8dp"
+    android:layout_marginStart="@dimen/define_dimen_8"
+    android:layout_marginTop="@dimen/define_dimen_8"
+    android:layout_marginEnd="@dimen/define_dimen_8"
+    android:layout_marginBottom="@dimen/define_dimen_14"
+    android:elevation="4dp"
     app:cardCornerRadius="18dp"
     app:cardElevation="6dp"
-    android:elevation="4dp">
+    app:strokeColor="@color/light_blue_2">
 
     <LinearLayout
         android:id="@+id/layout_item_contact"
@@ -27,9 +31,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="6dp"
             android:textColor="@color/black"
-            android:textSize="14sp"
-            android:layout_marginBottom="6dp"/>
+            android:textSize="14sp" />
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

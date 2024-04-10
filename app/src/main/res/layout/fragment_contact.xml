@@ -31,15 +31,21 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:padding="@dimen/define_dimen_8"
-                    android:text="@string/about_us_title" />
+                    android:text="@string/about_us_title"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/define_dimen_10"
                     android:padding="@dimen/define_dimen_8"
-                    android:text="@string/managements" />
+                    android:text="@string/managements"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -59,7 +65,7 @@
                             android:layout_marginTop="@dimen/define_dimen_10"
                             android:layout_marginBottom="@dimen/define_dimen_10"
                             app:cardCornerRadius="@dimen/define_dimen_80"
-                            app:cardElevation="@dimen/define_dimen_10"
+                            app:cardElevation="@dimen/define_dimen_8"
                             app:strokeColor="@color/light_green">
 
                             <ImageView
@@ -85,8 +91,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/avatar_member_name_1"
                             android:layout_marginStart="@dimen/define_dimen_12"
+                            android:layout_marginEnd="@dimen/define_dimen_8"
                             android:layout_toEndOf="@id/avatar_1"
                             android:text="@string/about_member_1"
+                            android:textColor="@color/black"
                             android:textSize="12sp" />
                     </RelativeLayout>
 
@@ -103,7 +111,7 @@
                             android:layout_marginTop="@dimen/define_dimen_10"
                             android:layout_marginBottom="@dimen/define_dimen_10"
                             app:cardCornerRadius="@dimen/define_dimen_80"
-                            app:cardElevation="@dimen/define_dimen_10"
+                            app:cardElevation="@dimen/define_dimen_8"
                             app:strokeColor="@color/light_blue_2">
 
                             <ImageView
@@ -129,8 +137,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/avatar_member_name_2"
                             android:layout_marginStart="@dimen/define_dimen_12"
+                            android:layout_marginEnd="@dimen/define_dimen_8"
                             android:layout_toEndOf="@id/avatar_2"
                             android:text="@string/about_member_2"
+                            android:textColor="@color/black"
                             android:textSize="12sp" />
                     </RelativeLayout>
 
@@ -147,7 +157,7 @@
                             android:layout_marginTop="@dimen/define_dimen_10"
                             android:layout_marginBottom="@dimen/define_dimen_10"
                             app:cardCornerRadius="@dimen/define_dimen_80"
-                            app:cardElevation="@dimen/define_dimen_10"
+                            app:cardElevation="@dimen/define_dimen_8"
                             app:strokeColor="@color/red">
 
                             <ImageView
@@ -173,19 +183,108 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/avatar_member_name_3"
                             android:layout_marginStart="@dimen/define_dimen_12"
+                            android:layout_marginEnd="@dimen/define_dimen_8"
                             android:layout_toEndOf="@id/avatar_3"
                             android:text="@string/about_member_3"
+                            android:textColor="@color/black"
                             android:textSize="12sp" />
                     </RelativeLayout>
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/define_dimen_4"
+                    android:padding="@dimen/define_dimen_4"
+                    android:text="@string/about"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/define_dimen_4"
+                    android:padding="@dimen/define_dimen_4"
+                    android:text="@string/about_member_4"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/define_dimen_4"
+                    android:padding="@dimen/define_dimen_6"
+                    android:text="@string/address"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/define_dimen_6"
+                    android:layout_marginTop="@dimen/define_dimen_4"
+                    android:layout_marginEnd="@dimen/define_dimen_6"
+                    android:layout_marginBottom="@dimen/define_dimen_18"
+                    app:cardCornerRadius="@dimen/define_dimen_10"
+                    app:cardElevation="@dimen/define_dimen_6"
+                    app:strokeColor="@color/light_green">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:padding="@dimen/define_dimen_8">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/define_dimen_2"
+                            android:text="@string/about_us_info_1"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/define_dimen_2"
+                            android:text="@string/about_us_info_2"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/define_dimen_2"
+                            android:text="@string/about_us_info_3"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_blue_2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/define_dimen_14"
+                android:layout_marginTop="@dimen/define_dimen_8"
+                android:padding="@dimen/define_dimen_6"
+                android:text="@string/contact_to_us"
+                android:textColor="@color/red"
+                android:textSize="16sp"
+                android:textStyle="normal" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@color/white" />
+                android:layout_marginBottom="@dimen/define_dimen_16"
+                android:background="@color/white"
+                android:padding="@dimen/define_dimen_10" />
 
             <TextView
                 android:id="@+id/tv_logout"
@@ -201,7 +300,6 @@
                 android:textStyle="bold"
                 android:visibility="gone"
                 tools:visibility="gone" />
-
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

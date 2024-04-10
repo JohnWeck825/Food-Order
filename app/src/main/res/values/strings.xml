@@ -49,16 +49,14 @@
     <string name="managements">Managements</string>
     <string name="tong_anh_tuan_ceo">Tống Anh Tuấn (CEO)</string>
     <string name="tran_nguyen_duc_nam">Trần Nguyễn Đức Nam</string>
-    <string name="about_us_info">Số 1 Quang Trung, Hoàn Kiếm, Hà Nội
-Điện thoại: +84. 24 3767 5168
-Email: info@tamtau.vn</string>
+    <string name="about_us_info_1">Số 1 Quang Trung, Hoàn Kiếm, Hà Nội</string>
+    <string name="about_us_info_2">Điện thoại: +84. 24 3767 5168</string>
+    <string name="about_us_info_3">Email: info@tamtau.vn</string>
     <string name="nguyen_chi_quyen">Nguyễn Chí Quyền</string>
 
     <string name="about_member_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
-    <string name="about_member_2">Ut
-                    enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.</string>
+    <string name="about_member_2">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
     <string name="about_member_3">Duis aute irure dolor
                     in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
 
@@ -70,5 +68,8 @@ Email: info@tamtau.vn</string>
                     consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                     enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                     consequat.</string>
+    <string name="about">About</string>
+    <string name="contact_to_us">Liên hệ với chúng tôi</string>
+    <string name="address">Address</string>
 
 </resources>
