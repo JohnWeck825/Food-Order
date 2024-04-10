@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -172,15 +173,29 @@ public class CartFragment extends Fragment {
         TextView edtOrderAddress = viewDialog.findViewById(R.id.order_address);
         ImageButton tvCancelOrder = viewDialog.findViewById(R.id.tv_cancel_order);
         TextView tvCreateOrder = viewDialog.findViewById(R.id.tv_create_order);
+        ScrollView scrollView = viewDialog.findViewById(R.id.scrollView);
         Spinner paymentSpinner = viewDialog.findViewById(R.id.payment_method_spn);
         String[] PrLang = {"Tiền mặt", "Chuyển khoản"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, PrLang);
 //        adapter.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item);
         paymentSpinner.setAdapter(adapter);
         tvFoodOrderDetail.setText(getStringFoodOrderList());
+        int lineCount = tvFoodOrderDetail.getLineHeight();
+//        if (lineCount <= 5) {
+//            scrollView.getLayoutParams().height = 50;
+//        } else {
+//            scrollView.getLayoutParams().height = 100;
+//        }
+        //        if (listFoods.size() <= 2) {
+//            scrollView.getLayoutParams().height = 60;
+//        } else {
+//            scrollView.getLayoutParams().height = 100;
+//        }
+
         tvOrderPrice.setText(cartBinding.tvTotalPrice.getText().toString());
 
         tvCancelOrder.setOnClickListener(v -> bottomSheetDialog.dismiss());
+        listFoods.size();
 
         tvCreateOrder.setOnClickListener(v -> {
             String strOrderName = edtOrderName.getText().toString().trim();
