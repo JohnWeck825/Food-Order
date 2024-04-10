@@ -1,15 +1,24 @@
 package com.example.foodorder.activity;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +29,8 @@ import com.example.foodorder.Adapter.ViewpagerAdapter;
 import com.example.foodorder.Constants.Constant;
 import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.Constants.StateDownload;
+
+
 import com.example.foodorder.R;
 import com.example.foodorder.SharePreference.PreferenceDownload;
 import com.example.foodorder.databinding.ActivityMainBinding;
@@ -33,9 +44,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mainBinding;
-    private DrawHeaderBinding drawHeaderBinding;
+    ActivityResultLauncher<Intent> resultLauncher;
+    ImageView img_avatar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         setUpViewPager();
         SetupDrawerLayout();
 
+        SetupHeaderNavigationView();
 
 
 
@@ -221,6 +238,8 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.toolbarMain.tvTitle.setText(title);
     }
     void SetupHeaderNavigationView(){
+
+        registerResult();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = firebaseUser.getUid();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -228,9 +247,20 @@ public class MainActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                img_avatar=findViewById(R.id.avata_img);
+                TextView tv_user,tv_email;
+                tv_user=findViewById(R.id.tv_user);
+                tv_email=findViewById(R.id.tv_email);
                 if(snapshot.exists()){
-                    drawHeaderBinding.tvUser.setText(snapshot.child("username").getValue(String.class));
-                    drawHeaderBinding.tvEmail.setText(snapshot.child("email").getValue(String.class));
+                    Toast.makeText(MainActivity.this, "aaaaa", Toast.LENGTH_SHORT).show();
+                    tv_user.setText(snapshot.child("username").getValue(String.class)+"");
+                    tv_email.setText(snapshot.child("email").getValue(String.class)+"");
+                    img_avatar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            pickImage();
+                        }
+                    });
                 }
             }
 
@@ -239,5 +269,29 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
+    private void pickImage(){
+        Intent it=new Intent(MediaStore.ACTION_PICK_IMAGES);
+        resultLauncher.launch(it);
+    }
+    private void registerResult(){
+        resultLauncher=registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult o) {
+                        try{
+                            Uri imgUri=o.getData().getData();
+                            img_avatar=findViewById(R.id.avata_img);
+                            img_avatar.setImageURI(imgUri);
+                        }catch(Exception e){
+                            Toast.makeText(MainActivity.this, "No Image Selected", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
+    }
+
+
 }
