@@ -31,6 +31,7 @@ import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.Constants.StateDownload;
 
 
+import com.example.foodorder.Model.Food;
 import com.example.foodorder.R;
 import com.example.foodorder.SharePreference.PreferenceDownload;
 import com.example.foodorder.databinding.ActivityMainBinding;
@@ -60,12 +61,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mainBinding.toolbarMain.optionToolbar);
         setUpViewPager();
         SetupDrawerLayout();
-
         SetupHeaderNavigationView();
 
 
 
+
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+    }
+
     void SetupDrawerLayout(){
         mainBinding.drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -204,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -215,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             mainBinding.toolbarMain.btnMenu.setVisibility(View.VISIBLE);
-            mainBinding.toolbarMain.imgCart.setVisibility(View.GONE);
+
             //            mainBinding.txtUser.setVisibility(View.VISIBLE);
 
 
@@ -224,16 +234,16 @@ public class MainActivity extends AppCompatActivity {
             mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
             mainBinding.toolbarMain.btnMenu.setVisibility(View.GONE);
             mainBinding.toolbarMain.imgBack.setVisibility(View.VISIBLE);
-            mainBinding.toolbarMain.imgCart.setVisibility(View.VISIBLE);
+
 
         }
         if (value == Frag.FEEDBACK ||value == Frag.CONTACT||value == Frag.HISTORY) {
             mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
             mainBinding.toolbarMain.btnMenu.setVisibility(View.GONE);
             mainBinding.toolbarMain.imgBack.setVisibility(View.VISIBLE);
-            mainBinding.toolbarMain.imgCart.setVisibility(View.GONE);
-        }
 
+        }
+        mainBinding.toolbarMain.imgCart.setVisibility(View.GONE);
         mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
         mainBinding.toolbarMain.tvTitle.setText(title);
     }
@@ -252,7 +262,6 @@ public class MainActivity extends AppCompatActivity {
                 tv_user=findViewById(R.id.tv_user);
                 tv_email=findViewById(R.id.tv_email);
                 if(snapshot.exists()){
-                    Toast.makeText(MainActivity.this, "aaaaa", Toast.LENGTH_SHORT).show();
                     tv_user.setText(snapshot.child("username").getValue(String.class)+"");
                     tv_email.setText(snapshot.child("email").getValue(String.class)+"");
                     img_avatar.setOnClickListener(new View.OnClickListener() {
@@ -292,6 +301,7 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
+
 
 
 }

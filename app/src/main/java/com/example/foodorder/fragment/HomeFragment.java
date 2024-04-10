@@ -165,6 +165,7 @@ public class HomeFragment extends Fragment {
             Intent it=new Intent(getActivity(), FoodDetailActivity.class);
             it.putExtra("bundleFood",bundle);
             startActivity(it);
+
         });
 
         homeBinding.viewPager2.setPageTransformer(new CompositePageTransformer());
