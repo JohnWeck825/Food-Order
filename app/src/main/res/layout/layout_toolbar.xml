@@ -22,12 +22,13 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:padding="10dp"
+        android:visibility="invisible"
         app:srcCompat="@drawable/baseline_menu_24" />
 
     <ImageView
         android:id="@+id/img_back"
-        android:layout_width="@dimen/define_dimen_45"
-        android:layout_height="@dimen/define_dimen_45"
+        android:layout_width="@dimen/define_dimen_80"
+        android:layout_height="@dimen/define_dimen_80"
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/define_dimen_6"
         android:padding="@dimen/define_dimen_20"

@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.toolbarMain.btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "cccc", Toast.LENGTH_SHORT).show();
                 mainBinding.drawerLayout.setVisibility(View.VISIBLE);
                 mainBinding.drawerLayout.open();
             }
@@ -213,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
             mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
             mainBinding.toolbarMain.btnMenu.setVisibility(View.GONE);
             mainBinding.toolbarMain.imgBack.setVisibility(View.VISIBLE);
+            mainBinding.toolbarMain.imgCart.setVisibility(View.GONE);
         }
 
         mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
