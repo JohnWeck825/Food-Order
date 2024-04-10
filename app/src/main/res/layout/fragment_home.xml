@@ -23,7 +23,7 @@
             android:layout_marginTop="@dimen/define_dimen_20"
             android:layout_marginRight="@dimen/define_dimen_20"
             android:layout_marginBottom="@dimen/define_dimen_20"
-            android:background="@drawable/bg_white_shape_border"
+            android:background="@drawable/search_bar"
             app:iconifiedByDefault="false"
             app:queryHint="Search Food"
             app:searchIcon="@drawable/search_icon" />

@@ -59,6 +59,23 @@ public class FeedbackFragment extends Fragment {
             int month = currentDate.getMonthValue();
             int year = currentDate.getYear();
             String createDate = String.valueOf(day + "-" + month + "-" + year);
+//            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//            String uid = firebaseUser.getUid();
+//            FirebaseDatabase firebaseDatabase1 = FirebaseDatabase.getInstance();
+//            DatabaseReference reference = firebaseDatabase1.getReference("Account").child(uid);
+//            reference.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    if (snapshot.exists()) {
+//                        String email = snapshot.child("email").getValue(String.class);
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
             Feedback feedback = new Feedback(fbName, fbPhone, fbEmail, fbComment, createDate);
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("feedback");

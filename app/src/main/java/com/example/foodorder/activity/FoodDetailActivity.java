@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,8 +72,8 @@ public class FoodDetailActivity extends AppCompatActivity {
         ImageView imgFood=viewDialog.findViewById(R.id.imageSheet);
         TextView name=viewDialog.findViewById(R.id.txt_name);
         TextView price=viewDialog.findViewById(R.id.txt_price);
-        Button cancel=viewDialog.findViewById(R.id.btnCancel);
-        Button addtocard=viewDialog.findViewById(R.id.btnAddtoCart);
+        ImageButton cancel=viewDialog.findViewById(R.id.btnCancel);
+        TextView addtocard=viewDialog.findViewById(R.id.btnAddtoCart);
         TextView btnminus=viewDialog.findViewById(R.id.btn_minus);
         TextView btnplus=viewDialog.findViewById(R.id.btnplus);
         TextView number=viewDialog.findViewById(R.id.txt_number);
