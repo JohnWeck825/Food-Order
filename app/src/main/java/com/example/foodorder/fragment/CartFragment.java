@@ -181,16 +181,19 @@ public class CartFragment extends Fragment {
         paymentSpinner.setAdapter(adapter);
         tvFoodOrderDetail.setText(getStringFoodOrderList());
         int lineCount = tvFoodOrderDetail.getLineHeight();
-//        if (lineCount <= 5) {
-//            scrollView.getLayoutParams().height = 50;
+//        if (lineCount >= 43) {
+//            scrollView.getLayoutParams().height = 240;
 //        } else {
-//            scrollView.getLayoutParams().height = 100;
+//            scrollView.getLayoutParams().height = 240;
 //        }
-        //        if (listFoods.size() <= 2) {
-//            scrollView.getLayoutParams().height = 60;
-//        } else {
-//            scrollView.getLayoutParams().height = 100;
-//        }
+//        if (listFoods.size() == 1) {
+//            scrollView.getLayoutParams().height = 180;
+//        } else
+            if (listFoods.size() <= 1) {
+            scrollView.getLayoutParams().height = 160;
+        } else {
+            scrollView.getLayoutParams().height = 240;
+        }
 
         tvOrderPrice.setText(cartBinding.tvTotalPrice.getText().toString());
 
