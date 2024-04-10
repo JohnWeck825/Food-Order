@@ -3,6 +3,7 @@ package com.example.foodorder.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,11 +23,19 @@ import com.example.foodorder.Constants.StateDownload;
 import com.example.foodorder.R;
 import com.example.foodorder.SharePreference.PreferenceDownload;
 import com.example.foodorder.databinding.ActivityMainBinding;
+import com.example.foodorder.databinding.DrawHeaderBinding;
 import com.example.foodorder.function.ContactFunction;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mainBinding;
-
+    private DrawHeaderBinding drawHeaderBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.toolbarMain.btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "cccc", Toast.LENGTH_SHORT).show();
                 mainBinding.drawerLayout.setVisibility(View.VISIBLE);
                 mainBinding.drawerLayout.open();
             }
@@ -156,11 +164,28 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemid= item.getItemId();
         if(itemid==R.id.item_logout){
-            PreferenceDownload preferenceDownload = new PreferenceDownload(this);
-            preferenceDownload.setValueDownload(Constant.KEY, StateDownload.FIRSTDOWLOAD);
-//            mAuth.signOut();
-            ContactFunction.showToastMessage(this, "Ok");
-            startActivity(new Intent(this, LoginActivity.class));
+            AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+            alert.setTitle("Thông Báo");
+            alert.setMessage("Bạn có muốn Đăng Xuất?");
+            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    PreferenceDownload preferenceDownload = new PreferenceDownload(MainActivity.this);
+                    preferenceDownload.setValueDownload(Constant.KEY, StateDownload.FIRSTDOWLOAD);
+                    ContactFunction.showToastMessage(MainActivity.this, "Ok");
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+
+                }
+            });
+            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            alert.create().show();
+
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -176,23 +201,7 @@ public class MainActivity extends AppCompatActivity {
             mainBinding.toolbarMain.imgCart.setVisibility(View.GONE);
             //            mainBinding.txtUser.setVisibility(View.VISIBLE);
 
-//            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//            String uid = firebaseUser.getUid();
-//            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-//            DatabaseReference databaseReference = firebaseDatabase.getReference("Account").child(uid);
-//            databaseReference.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    if(snapshot.exists()){
-//                        mainBinding.txtUser.setText(snapshot.child("username").getValue(String.class));
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//            });
+
         }
         if (value == Frag.CART) {
             mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
@@ -205,9 +214,30 @@ public class MainActivity extends AppCompatActivity {
             mainBinding.toolbarMain.optionToolbar.setVisibility(View.GONE);
             mainBinding.toolbarMain.btnMenu.setVisibility(View.GONE);
             mainBinding.toolbarMain.imgBack.setVisibility(View.VISIBLE);
+            mainBinding.toolbarMain.imgCart.setVisibility(View.GONE);
         }
 
         mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
         mainBinding.toolbarMain.tvTitle.setText(title);
+    }
+    void SetupHeaderNavigationView(){
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = firebaseUser.getUid();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("Account").child(uid);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    drawHeaderBinding.tvUser.setText(snapshot.child("username").getValue(String.class));
+                    drawHeaderBinding.tvEmail.setText(snapshot.child("email").getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

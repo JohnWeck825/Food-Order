@@ -37,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:visibility="visible"
             app:dividerInsetStart="60dp"
             app:headerLayout="@layout/draw_header"
             app:itemIconPadding="30dp"
