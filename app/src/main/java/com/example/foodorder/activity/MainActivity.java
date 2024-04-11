@@ -37,6 +37,7 @@ import com.example.foodorder.SharePreference.PreferenceDownload;
 import com.example.foodorder.databinding.ActivityMainBinding;
 import com.example.foodorder.databinding.DrawHeaderBinding;
 import com.example.foodorder.function.ContactFunction;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -62,10 +63,43 @@ public class MainActivity extends AppCompatActivity {
         setUpViewPager();
         SetupDrawerLayout();
         SetupHeaderNavigationView();
+        SetupNavigationView();
 
 
 
 
+    }
+
+    private void SetupNavigationView() {
+        mainBinding.navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int itemid=menuItem.getItemId();
+                if(itemid==R.id.nav_menu){
+                    Toast.makeText(MainActivity.this,"nav_menu",Toast.LENGTH_LONG).show();
+                }
+                if(itemid==R.id.nav_home){
+                    Toast.makeText(MainActivity.this,"nav_home",Toast.LENGTH_LONG).show();
+                }
+                if(itemid==R.id.nav_cart){
+                    Toast.makeText(MainActivity.this,"nav_cart",Toast.LENGTH_LONG).show();
+                }
+                if(itemid==R.id.nav_feedback){
+                    Toast.makeText(MainActivity.this,"nav_feedback",Toast.LENGTH_LONG).show();
+                }
+                if(itemid==R.id.nav_contact){
+                    Toast.makeText(MainActivity.this,"nav_contact",Toast.LENGTH_LONG).show();
+                }
+                if(itemid==R.id.nav_history){
+                    Toast.makeText(MainActivity.this,"nav_history",Toast.LENGTH_LONG).show();
+                }
+                if(itemid==R.id.nav_favorite){
+                    Intent it=new Intent(MainActivity.this,FavoriteAtivity.class);
+                    startActivity(it);
+                }
+                return false;
+            }
+        });
     }
 
     @Override

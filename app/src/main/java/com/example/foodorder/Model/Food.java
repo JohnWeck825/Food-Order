@@ -7,13 +7,13 @@ import java.io.Serializable;
 @Entity(tableName = "tbFood")
 public class Food implements Serializable {
     @PrimaryKey
-    private int id;
-    private String name;
-    private String image;
-    private int price;
-    private int sale;
-    private int count;
-    private int totalPrice;
+    int id;
+    String name;
+    String image;
+    int price;
+    int sale;
+    int count;
+    int totalPrice;
 
     public Food() {
 
