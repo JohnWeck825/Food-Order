@@ -124,7 +124,6 @@ public class HomeFragment extends Fragment {
 
     void GetFoodFromFirebase(String key){
         this.mlstFood=new ArrayList<>();
-
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference dbReference=firebaseDatabase.getReference("food");
 

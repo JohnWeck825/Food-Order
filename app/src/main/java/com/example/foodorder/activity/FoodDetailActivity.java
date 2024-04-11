@@ -14,8 +14,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodorder.Constants.Constant;
+import com.example.foodorder.Database.DatabaseFavorite;
 import com.example.foodorder.Database.DatabaseFood;
 import com.example.foodorder.Model.Food;
+import com.example.foodorder.Model.FoodFavorite;
 import com.example.foodorder.R;
 import com.example.foodorder.databinding.ActivityFoodDetailBinding;
 import com.example.foodorder.utils.GlideUtilis;
@@ -63,7 +65,13 @@ public class FoodDetailActivity extends AppCompatActivity {
         foodDetailBinding.toolbar.imgCart.setOnClickListener(v->AddtoCart());
         foodDetailBinding.btnAddCart.setOnClickListener(v->AddtoCart());
         foodDetailBinding.toolbar.imgBack.setOnClickListener(v->onBackPressed());
-
+        foodDetailBinding.btnFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseFavorite.getInstance(FoodDetailActivity.this).favoriteDAO().insertFavorite((FoodFavorite) mfood);
+                Toast.makeText(FoodDetailActivity.this,"Added to Favorite",Toast.LENGTH_LONG).show();
+            }
+        });
     }
     private void AddtoCart(){
         @SuppressLint("InflateParams") View viewDialog = getLayoutInflater().inflate(R.layout.layout_bottom_sheet_cart, null);
