@@ -29,6 +29,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         void clickDeteteFood(Food food, int position);
 
     }
+    public void updateData(List<Food> lst){
+        lstFood=lst;
+        notifyDataSetChanged();
+    }
     public FavoriteAdapter(List<Food> lstFood ,IonClickListener clickListener,IClickDelete clickdelete) {
         this.lstFood = lstFood;
         this.clickListener=clickListener;

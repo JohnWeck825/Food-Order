@@ -85,6 +85,16 @@ public class FavoriteAtivity extends AppCompatActivity {
                 lstFavorite.remove(position);
                 favoriteAdapter.notifyItemChanged(position);
                 favoriteAdapter.notifyDataSetChanged();
+
+
+                List<Food> lstFood=new ArrayList<>();
+                lstFavorite=new ArrayList<>();
+                lstFavorite= DatabaseFavorite.getInstance(FavoriteAtivity.this).favoriteDAO().getListFoodFavorite();
+                for(FoodFavorite favorite:lstFavorite){
+                    lstFood.add(ConvertClass.FavoriteToFood(favorite));
+                }
+                favoriteAdapter.notifyDataSetChanged();
+                favoriteAdapter.updateData(lstFood);
             }
         });
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
