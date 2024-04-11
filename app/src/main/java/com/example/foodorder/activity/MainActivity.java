@@ -243,6 +243,12 @@ public class MainActivity extends AppCompatActivity {
             mainBinding.toolbarMain.imgBack.setVisibility(View.VISIBLE);
 
         }
+        mainBinding.toolbarMain.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainBinding.viewPager.setCurrentItem(0);
+            }
+        });
         mainBinding.toolbarMain.imgCart.setVisibility(View.GONE);
         mainBinding.toolbarMain.layoutToolbar.setVisibility(View.VISIBLE);
         mainBinding.toolbarMain.tvTitle.setText(title);
