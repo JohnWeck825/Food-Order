@@ -47,6 +47,10 @@ public class FoodDetailActivity extends AppCompatActivity {
         mfood=(Food)bundle.getSerializable("food");
     }
     private void SetupLayout(){
+        List<FoodFavorite> list=DatabaseFavorite.getInstance(FoodDetailActivity.this).favoriteDAO().checkFoodInFavorite(mfood.getId());
+        if(list!=null && !list.isEmpty()){
+            foodDetailBinding.btnFavorite.setImageResource(R.drawable.favorite_food_fill);
+        }
         GlideUtilis.loadUrlImage(mfood.getImage(),foodDetailBinding.imgDisplay);
         foodDetailBinding.tvName.setText(mfood.getName());
         foodDetailBinding.tvPrice.setText(mfood.getPrice()+ Constant.CURRENCY);
@@ -69,9 +73,12 @@ public class FoodDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try{
                     DatabaseFavorite.getInstance(FoodDetailActivity.this).favoriteDAO().insertFavorite((ConvertClass.FoodToFavorite(mfood)));
-                    Toast.makeText(FoodDetailActivity.this,"Đã thêm vào Favorite",Toast.LENGTH_LONG).show();
+                    foodDetailBinding.btnFavorite.setImageResource(R.drawable.favorite_food_fill);
+                    Toast.makeText(FoodDetailActivity.this,"Đã Thêm Vào Yêu Thích",Toast.LENGTH_LONG).show();
                 }catch (Exception e){
-                    Toast.makeText(FoodDetailActivity.this,"Đã có trong Favorite",Toast.LENGTH_LONG).show();
+                    DatabaseFavorite.getInstance(FoodDetailActivity.this).favoriteDAO().deleteFood((ConvertClass.FoodToFavorite(mfood)));
+                    foodDetailBinding.btnFavorite.setImageResource(R.drawable.favorite_food);
+                    Toast.makeText(FoodDetailActivity.this,"Đã Xóa Khỏi Yêu Thích",Toast.LENGTH_LONG).show();
                 }
             }
         });
