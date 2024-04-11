@@ -1,5 +1,6 @@
 package com.example.foodorder.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodorder.Database.Constant;
+import com.example.foodorder.Database.DatabaseFavorite;
 import com.example.foodorder.EventClickHandle.IonClickListener;
+import com.example.foodorder.Model.ConvertClass;
 import com.example.foodorder.Model.Food;
 import com.example.foodorder.Model.FoodFavorite;
 import com.example.foodorder.databinding.ItemFavoriteBinding;
@@ -20,9 +23,16 @@ import java.util.List;
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder>{
     List<Food> lstFood;
     IonClickListener clickListener;
-    public FavoriteAdapter(List<Food> lstFood ,IonClickListener clickListener) {
+    IClickDelete clickDelete;
+    Context context;
+    public interface IClickDelete {
+        void clickDeteteFood(Food food, int position);
+
+    }
+    public FavoriteAdapter(List<Food> lstFood ,IonClickListener clickListener,IClickDelete clickdelete) {
         this.lstFood = lstFood;
         this.clickListener=clickListener;
+        this.clickDelete=clickdelete;
         notifyDataSetChanged();
     }
 
@@ -41,6 +51,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         holder.itemFavoriteBinding.tvFname.setText(food.getName());
         holder.itemFavoriteBinding.tvFprice.setText(food.getPrice()+Constant.CURRENCY);
         holder.itemFavoriteBinding.tvFpricesale.setText(food.getPriceSale()+ Constant.CURRENCY);
+
+        holder.itemFavoriteBinding.btnDeleteFavorite.setOnClickListener(v ->
+                clickDelete.clickDeteteFood(food,holder.getAdapterPosition()));
 
         holder.itemFavoriteBinding.layoutItemFavorite.setOnClickListener(v -> {
             clickListener.onclick(food);

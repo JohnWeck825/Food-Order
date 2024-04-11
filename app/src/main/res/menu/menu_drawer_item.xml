@@ -30,9 +30,9 @@
             android:icon="@drawable/baseline_feedback_24"
             android:title="FeedBack" />
         <item
-            android:id="@+id/nav_history"
-            android:icon="@drawable/baseline_history_24"
-            android:title="History" />
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/baseline_logout_24"
+            android:title="Logout" />
     </group>
 
 

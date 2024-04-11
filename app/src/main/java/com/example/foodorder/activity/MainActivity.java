@@ -90,8 +90,27 @@ public class MainActivity extends AppCompatActivity {
                 if(itemid==R.id.nav_contact){
                     Toast.makeText(MainActivity.this,"nav_contact",Toast.LENGTH_LONG).show();
                 }
-                if(itemid==R.id.nav_history){
-                    Toast.makeText(MainActivity.this,"nav_history",Toast.LENGTH_LONG).show();
+                if(itemid==R.id.nav_logout){
+                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                    alert.setTitle("Thông Báo");
+                    alert.setMessage("Bạn có muốn Đăng Xuất?");
+                    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            PreferenceDownload preferenceDownload = new PreferenceDownload(MainActivity.this);
+                            preferenceDownload.setValueDownload(Constant.KEY, StateDownload.FIRSTDOWLOAD);
+                            ContactFunction.showToastMessage(MainActivity.this, "Ok");
+                            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+
+                        }
+                    });
+                    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    alert.create().show();
                 }
                 if(itemid==R.id.nav_favorite){
                     Intent it=new Intent(MainActivity.this,FavoriteAtivity.class);

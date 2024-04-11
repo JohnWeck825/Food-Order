@@ -47,6 +47,10 @@ public class FoodDetailActivity extends AppCompatActivity {
         mfood=(Food)bundle.getSerializable("food");
     }
     private void SetupLayout(){
+        List<FoodFavorite> list=DatabaseFavorite.getInstance(FoodDetailActivity.this).favoriteDAO().checkFoodInFavorite(mfood.getId());
+        if(list!=null && !list.isEmpty()){
+            foodDetailBinding.btnFavorite.setImageResource(R.drawable.favorite_food_fill);
+        }
         GlideUtilis.loadUrlImage(mfood.getImage(),foodDetailBinding.imgDisplay);
         foodDetailBinding.tvName.setText(mfood.getName());
         foodDetailBinding.tvPrice.setText(mfood.getPrice()+ Constant.CURRENCY);
