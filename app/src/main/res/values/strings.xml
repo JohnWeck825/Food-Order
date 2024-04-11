@@ -40,6 +40,8 @@
     <string name="zalo">Zalo</string>
     <string name="feedback">Phản hồi (*)</string>
     <string name="send_feedback">Gửi phản hồi</string>
+    <string name="rate_us">Đánh giá</string>
+    <string name="send_rating_star">Gửi đánh giá</string>
     <string name="order">Đặt Hàng</string>
     <string name="history_order_id">Mã đơn hàng:</string>
     <string name="logout">Đăng xuất</string>
@@ -72,5 +74,6 @@
     <string name="contact_to_us">Liên hệ với chúng tôi</string>
     <string name="address">Address</string>
     <string name="add_to_cart_food_details">Thêm Vào Giỏ Hàng</string>
+    <string name="rate_our_service">Rate our service</string>
 
 </resources>

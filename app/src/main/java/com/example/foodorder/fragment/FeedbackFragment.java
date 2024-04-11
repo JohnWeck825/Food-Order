@@ -1,15 +1,21 @@
 package com.example.foodorder.fragment;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodorder.Constants.Frag;
 import com.example.foodorder.Model.Feedback;
+import com.example.foodorder.R;
 import com.example.foodorder.activity.MainActivity;
 import com.example.foodorder.databinding.FragmentFeedbackBinding;
 import com.example.foodorder.function.ContactFunction;
@@ -21,10 +27,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDate;
+import java.util.Objects;
+
+import pl.droidsonroids.gif.GifImageView;
 
 public class FeedbackFragment extends Fragment {
     private FragmentFeedbackBinding feedbackBinding;
-
+    private String starRating;
     FirebaseAuth mAuth;
 
 
@@ -33,8 +42,41 @@ public class FeedbackFragment extends Fragment {
                              Bundle savedInstanceState) {
         feedbackBinding = FragmentFeedbackBinding.inflate(inflater, container, false);
         feedbackBinding.tvSendFeedback.setOnClickListener(v -> onClickSendFeedback());
+        feedbackBinding.tvRateUs.setOnClickListener(v -> onClickRateUs());
         mAuth = FirebaseAuth.getInstance();
         return feedbackBinding.getRoot();
+    }
+
+//    @Override
+//    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+//        if (rating <= 1) {
+//            gifImageView.setImageResource(R.drawable.emotion_1);
+//        } else if (rating <= 2) {
+//            gifImageView.setImageResource(R.drawable.emotion_2);
+//        } else if (rating <= 3) {
+//            gifImageView.setImageResource(R.drawable.emotion_3);
+//        } else if (rating <= 4) {
+//            gifImageView.setImageResource(R.drawable.emotion_4);
+//        } else if (rating <= 5) {
+//            gifImageView.setImageResource(R.drawable.emotion_5);
+//        } else if (rating <= 6) {
+//            gifImageView.setImageResource(R.drawable.emotion_6);
+//        }
+//        starRating = (int) rating + " star";
+//
+//        animateGifImage(gifImageView);
+//    }
+
+    public String getStarRating() {
+        return starRating;
+    }
+
+    private void animateGifImage(GifImageView ratingGifImage) {
+        ScaleAnimation scaleAnimation = new ScaleAnimation(0, 1f, 0, 1f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        scaleAnimation.setFillAfter(true);
+        scaleAnimation.setDuration(200);
+        ratingGifImage.startAnimation(scaleAnimation);
     }
 
     private void onClickSendFeedback() {
@@ -95,6 +137,69 @@ public class FeedbackFragment extends Fragment {
                 }
             });
         }
+    }
+
+    private void onClickRateUs() {
+        if (getActivity() == null) {
+            return;
+        }
+        Dialog dialog = new Dialog(getActivity());
+        View viewDialog = getLayoutInflater().inflate(R.layout.rating_star, null);
+        dialog.setContentView(viewDialog);
+
+        GifImageView gifImageView = viewDialog.findViewById(R.id.ratingImg);
+        RatingBar ratingBar = viewDialog.findViewById(R.id.ratingBar);
+        TextView SendRatingStar = viewDialog.findViewById(R.id.tv_send_rating_star);
+
+//        dialog.setContentView(R.layout.rating_star);
+//        GifImageView gifImageView = dialog.findViewById(R.id.ratingImg);
+//        RatingBar ratingBar = dialog.findViewById(R.id.ratingBar);
+//        TextView SendRatingStar = dialog.findViewById(R.id.tv_send_rating_star);
+
+        starRating = "0 star";
+//        ratingBar.setOnRatingBarChangeListener(this);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (rating <= 1) {
+                    gifImageView.setImageResource(R.drawable.emotion_1);
+                } else if (rating <= 2) {
+                    gifImageView.setImageResource(R.drawable.emotion_2);
+                } else if (rating <= 3) {
+                    gifImageView.setImageResource(R.drawable.emotion_3);
+                } else if (rating <= 4) {
+                    gifImageView.setImageResource(R.drawable.emotion_4);
+                } else if (rating <= 5) {
+                    gifImageView.setImageResource(R.drawable.emotion_5);
+                } else if (rating <= 6) {
+                    gifImageView.setImageResource(R.drawable.emotion_6);
+                }
+                starRating = (int) rating + " star";
+//                feedbackBinding.testStar.setText(starRating);
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = firebaseDatabase.getReference("feedback").child("rating");
+                SendRatingStar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        if (starRating.equals("0 star")) {
+//                            ContactFunction.showToastMessage(getActivity(), "Vui lòng chon số sao (>=1)");
+//                        } else {
+                        databaseReference.push().setValue(starRating).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                ratingBar.setRating(3);
+                            }
+                        });
+                        ContactFunction.showToastMessage(getActivity(), "Cảm ơn bạn đã đánh giá");
+//                        }
+                    }
+                });
+                animateGifImage(gifImageView);
+            }
+        });
+
+        Objects.requireNonNull(dialog.getWindow()).setLayout(1000, 1140);
+        dialog.show();
     }
 
     @Override

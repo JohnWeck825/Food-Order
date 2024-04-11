@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.FoodOrder" parent="Base.Theme.FoodOrder" />
+
+    <style name="RatingBar" parent="Widget.AppCompat.RatingBar">
+        <!--        Non selected star color-->
+        <item name="colorControlNormal">#4D000000</item>
+        <!--        Selected star color-->
+        <item name="colorControlActivated">@color/star_2</item>
+    </style>
 </resources>

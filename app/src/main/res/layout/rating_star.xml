@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="@dimen/define_dimen_8"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="@dimen/define_dimen_20">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/define_dimen_160"
+            android:background="@drawable/food_background_3" />
+
+        <RelativeLayout
+            android:layout_width="@dimen/define_dimen_150"
+            android:layout_height="@dimen/define_dimen_150"
+            android:layout_gravity="center"
+            android:layout_marginTop="-75dp"
+            android:background="@drawable/emotion_parent"
+            android:padding="@dimen/define_dimen_6">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/emotion_place" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/ratingImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@drawable/emotion_3" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/rate_our_service"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/define_dimen_10"
+            android:layout_marginBottom="@dimen/define_dimen_10"
+            android:numStars="6"
+            android:rating="3"
+            android:theme="@style/RatingBar" />
+
+        <TextView
+            android:id="@+id/test_star"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="0 star"
+            android:visibility="invisible"
+            tools:visibility="invisible" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_send_rating_star"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/define_dimen_10"
+                android:layout_marginBottom="@dimen/define_dimen_10"
+                android:background="@drawable/edt_order_cart_bg"
+                android:gravity="center"
+                android:text="@string/send_rating_star"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

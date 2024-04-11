@@ -17,4 +17,8 @@
     <color name="unactive">#535351</color>
     <color name="active">#00FF00</color>
     <color name="light_green">#34fe59</color>
+    <color name="light_yellow">#fefe00</color>
+    <color name="star_1">#FDD736</color>
+    <color name="star_2">#fee133</color>
+
 </resources>
