@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.foodorder.Constants.Constant;
 import com.example.foodorder.Database.DatabaseFavorite;
 import com.example.foodorder.Database.DatabaseFood;
+import com.example.foodorder.Model.ConvertClass;
 import com.example.foodorder.Model.Food;
 import com.example.foodorder.Model.FoodFavorite;
 import com.example.foodorder.R;
@@ -40,8 +41,6 @@ public class FoodDetailActivity extends AppCompatActivity {
         InitListener();
         SetStateBtnAddCart();
     }
-
-
     private void getDataIntent(){
         Intent it=getIntent();
         Bundle bundle=it.getBundleExtra("bundleFood");
@@ -68,8 +67,12 @@ public class FoodDetailActivity extends AppCompatActivity {
         foodDetailBinding.btnFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseFavorite.getInstance(FoodDetailActivity.this).favoriteDAO().insertFavorite((FoodFavorite) mfood);
-                Toast.makeText(FoodDetailActivity.this,"Added to Favorite",Toast.LENGTH_LONG).show();
+                try{
+                    DatabaseFavorite.getInstance(FoodDetailActivity.this).favoriteDAO().insertFavorite((ConvertClass.FoodToFavorite(mfood)));
+                    Toast.makeText(FoodDetailActivity.this,"Đã thêm vào Favorite",Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(FoodDetailActivity.this,"Đã có trong Favorite",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
