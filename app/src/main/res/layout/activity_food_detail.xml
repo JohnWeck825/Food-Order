@@ -5,7 +5,7 @@
     android:id="@+id/toolbar_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#10DF72"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".activity.FoodDetailActivity">
 
@@ -13,30 +13,53 @@
         android:id="@+id/toolbar"
         layout="@layout/layout_toolbar" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/define_dimen_10">
+
+
+    </RelativeLayout>
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
-            <ImageView
-                android:id="@+id/img_display"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="184dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/baseline_home_24" />
-
-            <TextView
-                android:id="@+id/tv_sale"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:background="#F10707"
-                android:padding="4dp"
-                android:text="saleoff"
-                android:textColor="@color/white" />
+                android:layout_margin="@dimen/define_dimen_6"
+                android:background="@color/white"
+                app:cardCornerRadius="@dimen/define_dimen_10"
+                app:cardElevation="@dimen/define_dimen_4"
+                app:strokeColor="@color/red">
+
+                <ImageView
+                    android:id="@+id/img_display"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:background="@color/white"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/baseline_home_24" />
+
+                <TextView
+                    android:id="@+id/tv_sale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="#F10707"
+                    android:padding="4dp"
+                    android:text="saleoff"
+                    android:textColor="@color/white" />
+            </com.google.android.material.card.MaterialCardView>
+
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -52,16 +75,18 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_marginStart="@dimen/define_dimen_10"
                 android:id="@+id/tv_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="6dp"
+                android:gravity="center"
                 android:text="name"
-                android:textColor="#FF0000"
+                android:textColor="@color/red"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
@@ -84,23 +109,211 @@
             </com.google.android.material.card.MaterialCardView>
         </RelativeLayout>
 
-
-        <TextView
-            android:id="@+id/tv_price"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="price"
-            android:textSize="14sp"
-            android:textStyle="italic" />
+            android:layout_marginStart="@dimen/define_dimen_4"
+            android:layout_marginTop="@dimen/define_dimen_8"
+            android:layout_marginEnd="@dimen/define_dimen_4">
 
-        <TextView
-            android:id="@+id/tv_pricesale"
+            <LinearLayout
+                android:layout_marginStart="@dimen/define_dimen_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="@dimen/define_dimen_6"
+                    android:src="@drawable/star_icon_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/define_dimen_6"
+                    android:text="4.9"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/define_dimen_6"
+                    android:text="(20+)"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginEnd="@dimen/define_dimen_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="@dimen/define_dimen_6"
+                    android:src="@drawable/alarm_clock_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10-20 min"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/define_dimen_14"
+            app:strokeColor="@color/light_blue_2">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/food_detail_vid" />
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/circle_food" />
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/citibank_animations" />
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/vegan_bbq" />
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/food_detail_vid_2" />
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_marginStart="@dimen/define_dimen_6"
+            android:layout_marginEnd="@dimen/define_dimen_6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="sale"
-            android:textSize="15sp" />
+            android:layout_marginTop="@dimen/define_dimen_14"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/define_dimen_6"
+                android:text="Details"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_food"
+                android:textColor="@color/hm"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_marginStart="@dimen/define_dimen_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/define_dimen_10"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/money_icon"
+                android:layout_width="20dp"
+                android:layout_height="18dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/define_dimen_6"
+                android:src="@drawable/money_icon" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/money_icon"
+                android:text="price"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_marginStart="@dimen/define_dimen_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/sale_icon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/define_dimen_6"
+                android:src="@drawable/sale_price" />
+
+            <TextView
+                android:id="@+id/tv_pricesale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/sale_icon"
+                android:text="sale"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/define_dimen_6"
+                android:layout_toEndOf="@id/tv_pricesale"
+                app:cardCornerRadius="@dimen/define_dimen_20"
+                app:strokeColor="@color/white">
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="70dp"
+                    android:layout_height="23.7dp"
+                    android:background="@color/white"
+                    android:src="@drawable/sale_1" />
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+
     </LinearLayout>
 
 
