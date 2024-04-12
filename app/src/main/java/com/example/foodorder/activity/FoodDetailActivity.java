@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,11 +47,20 @@ public class FoodDetailActivity extends AppCompatActivity {
         Bundle bundle=it.getBundleExtra("bundleFood");
         mfood=(Food)bundle.getSerializable("food");
     }
+    private void animateImage(ImageView favoriteImage) {
+        ScaleAnimation scaleAnimation = new ScaleAnimation(0, 1f, 0, 1f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        scaleAnimation.setFillAfter(true);
+        scaleAnimation.setDuration(200);
+        favoriteImage.startAnimation(scaleAnimation);
+    }
     private void SetupLayout(){
+//        ImageView btnFavorite = foodDetailBinding.btnFavorite;
         List<FoodFavorite> list=DatabaseFavorite.getInstance(FoodDetailActivity.this).favoriteDAO().checkFoodInFavorite(mfood.getId());
         if(list!=null && !list.isEmpty()){
             foodDetailBinding.btnFavorite.setImageResource(R.drawable.favorite_food_fill);
         }
+//        animateImage(btnFavorite);
         GlideUtilis.loadUrlImage(mfood.getImage(),foodDetailBinding.imgDisplay);
         foodDetailBinding.tvName.setText(mfood.getName());
         foodDetailBinding.tvPrice.setText(mfood.getPrice()+ Constant.CURRENCY);
@@ -71,6 +81,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         foodDetailBinding.btnFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                animateImage(foodDetailBinding.btnFavorite);
                 try{
                     DatabaseFavorite.getInstance(FoodDetailActivity.this).favoriteDAO().insertFavorite((ConvertClass.FoodToFavorite(mfood)));
                     foodDetailBinding.btnFavorite.setImageResource(R.drawable.favorite_food_fill);
