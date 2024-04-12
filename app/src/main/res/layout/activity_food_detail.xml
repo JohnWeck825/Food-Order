@@ -96,7 +96,7 @@
                 android:layout_margin="@dimen/define_dimen_8"
                 android:elevation="@dimen/define_dimen_2"
                 app:cardCornerRadius="@dimen/define_dimen_80"
-                app:cardElevation="@dimen/define_dimen_8"
+                app:cardElevation="@dimen/define_dimen_6"
                 app:strokeColor="@color/red">
 
                 <View

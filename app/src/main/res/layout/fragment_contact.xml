@@ -23,10 +23,18 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageView
+                <LinearLayout
+                    android:background="@color/white"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/define_dimen_180"
-                    android:src="@drawable/img_splash" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/define_dimen_180"
+                        android:src="@drawable/img_splash_2" />
+                </LinearLayout>
+
 
                 <TextView
                     android:layout_width="match_parent"
@@ -181,7 +189,8 @@
                                 android:layout_height="0dp"
                                 android:background="@color/white"
                                 android:src="@drawable/cat_avatar_4"
-                                android:visibility="invisible"/>
+                                android:visibility="invisible" />
+
                             <pl.droidsonroids.gif.GifImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"

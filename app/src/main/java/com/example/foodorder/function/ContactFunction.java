@@ -39,7 +39,7 @@ public class ContactFunction{
         context.startActivity(intent);
     }
     public static void onClickOpenYoutube(Context context){
-        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=1jpuNAYcS2o")));
+        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=fvowi8bhvnA&ab_channel=B%E1%BA%A3ooSADBoy")));
     }
     public static void onClickOpenZalo(Context context){
         context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("")));
