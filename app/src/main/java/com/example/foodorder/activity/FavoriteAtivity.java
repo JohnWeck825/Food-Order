@@ -50,6 +50,7 @@ public class FavoriteAtivity extends AppCompatActivity {
         favoriteAtivityBinding.toolbar.imgBack.setVisibility(View.VISIBLE);
         favoriteAtivityBinding.toolbar.imgCart.setVisibility(View.GONE);
         favoriteAtivityBinding.toolbar.imgBack.setOnClickListener(v->onBackPressed());
+        favoriteAtivityBinding.toolbar.tvTitle.setText("Favorite Food");
     }
     private void SetupUI(){
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(FavoriteAtivity.this);

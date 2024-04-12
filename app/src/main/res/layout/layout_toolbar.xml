@@ -5,14 +5,14 @@
     android:id="@+id/layout_toolbar"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
-    android:background="#025EFA"
+    android:background="#18BDB8"
     tools:ignore="ContentDescription">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/optionToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="#17FFFFFF"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
@@ -25,7 +25,6 @@
 
         android:visibility="invisible"
         app:srcCompat="@drawable/baseline_menu_24" />
-
 
 
     <ImageView

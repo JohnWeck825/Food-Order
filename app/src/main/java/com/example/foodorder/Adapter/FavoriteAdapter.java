@@ -1,6 +1,7 @@
 package com.example.foodorder.Adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         GlideUtilis.loadUrlImage(food.getImage(),holder.itemFavoriteBinding.imgItemFavorite);
         holder.itemFavoriteBinding.tvFname.setText(food.getName());
         holder.itemFavoriteBinding.tvFprice.setText(food.getPrice()+Constant.CURRENCY);
+        holder.itemFavoriteBinding.tvFprice.setPaintFlags(holder.itemFavoriteBinding.tvFprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         holder.itemFavoriteBinding.tvFpricesale.setText(food.getPriceSale()+ Constant.CURRENCY);
 
         holder.itemFavoriteBinding.btnDeleteFavorite.setOnClickListener(v ->
