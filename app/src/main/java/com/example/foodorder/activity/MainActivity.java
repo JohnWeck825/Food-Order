@@ -84,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
                 if(itemid==R.id.nav_cart){
                     Toast.makeText(MainActivity.this,"nav_cart",Toast.LENGTH_LONG).show();
                 }
-                if(itemid==R.id.nav_feedback){
-                    Toast.makeText(MainActivity.this,"nav_feedback",Toast.LENGTH_LONG).show();
+                if(itemid==R.id.nav_setting){
+                    Toast.makeText(MainActivity.this,"nav_setting",Toast.LENGTH_LONG).show();
                 }
-                if(itemid==R.id.nav_contact){
-                    Toast.makeText(MainActivity.this,"nav_contact",Toast.LENGTH_LONG).show();
+                if(itemid==R.id.nav_notic){
+                    Toast.makeText(MainActivity.this,"nav_notification",Toast.LENGTH_LONG).show();
                 }
                 if(itemid==R.id.nav_logout){
                     AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
