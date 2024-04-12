@@ -22,13 +22,13 @@
 
     <group android:id="@+id/group2">
         <item
-            android:id="@+id/nav_contact"
-            android:icon="@drawable/baseline_perm_contact_calendar_24"
-            android:title="Contact" />
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/baseline_settings_applications_24"
+            android:title="Setting" />
         <item
-            android:id="@+id/nav_feedback"
-            android:icon="@drawable/baseline_feedback_24"
-            android:title="FeedBack" />
+            android:id="@+id/nav_notic"
+            android:icon="@drawable/baseline_notifications_active_24"
+            android:title="Notification" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/baseline_logout_24"
