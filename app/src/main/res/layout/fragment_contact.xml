@@ -69,10 +69,18 @@
                             app:strokeColor="@color/light_green">
 
                             <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:background="@color/white"
+                                android:src="@drawable/elephant_avatar"
+                                android:visibility="invisible" />
+
+                            <pl.droidsonroids.gif.GifImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:layout_gravity="center"
                                 android:background="@color/white"
-                                android:src="@drawable/elephant_avatar" />
+                                android:src="@drawable/toothless" />
                         </com.google.android.material.card.MaterialCardView>
 
                         <TextView
@@ -115,10 +123,18 @@
                             app:strokeColor="@color/light_blue_2">
 
                             <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:background="@color/white"
+                                android:src="@drawable/goat_avatar"
+                                android:visibility="invisible" />
+
+                            <pl.droidsonroids.gif.GifImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:layout_gravity="center"
                                 android:background="@color/white"
-                                android:src="@drawable/goat_avatar" />
+                                android:src="@drawable/minion_1" />
                         </com.google.android.material.card.MaterialCardView>
 
                         <TextView
@@ -161,10 +177,17 @@
                             app:strokeColor="@color/red">
 
                             <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:background="@color/white"
+                                android:src="@drawable/cat_avatar_4"
+                                android:visibility="invisible"/>
+                            <pl.droidsonroids.gif.GifImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:layout_gravity="center"
                                 android:background="@color/white"
-                                android:src="@drawable/cat_avatar_4" />
+                                android:src="@drawable/cat_avatar_vid" />
                         </com.google.android.material.card.MaterialCardView>
 
                         <TextView

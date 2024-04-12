@@ -1,6 +1,5 @@
 package com.example.foodorder.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,18 +9,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.foodorder.Adapter.ContactAdapter;
-import com.example.foodorder.Constants.Constant;
 import com.example.foodorder.Constants.Frag;
-import com.example.foodorder.Constants.StateDownload;
 import com.example.foodorder.Model.Contact;
 import com.example.foodorder.R;
-import com.example.foodorder.SharePreference.PreferenceDownload;
-import com.example.foodorder.activity.LoginActivity;
 import com.example.foodorder.activity.MainActivity;
 import com.example.foodorder.databinding.FragmentContactBinding;
-import com.example.foodorder.function.ContactFunction;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,18 +33,18 @@ public class ContactFragment extends Fragment {
         mFragmentContactBinding = FragmentContactBinding.inflate(inflater, container, false);
         mAuth = FirebaseAuth.getInstance();
 
-        FirebaseUser user = mAuth.getCurrentUser();
-        mFragmentContactBinding.tvLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PreferenceDownload preferenceDownload = new PreferenceDownload(getActivity());
-                preferenceDownload.setValueDownload(Constant.KEY, StateDownload.FIRSTDOWLOAD);
-                mAuth.signOut();
-                ContactFunction.showToastMessage(getActivity(), "Ok");
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-
-            }
-        });
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        mFragmentContactBinding.tvLogout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                PreferenceDownload preferenceDownload = new PreferenceDownload(getActivity());
+//                preferenceDownload.setValueDownload(Constant.KEY, StateDownload.FIRSTDOWLOAD);
+//                mAuth.signOut();
+//                ContactFunction.showToastMessage(getActivity(), "Ok");
+//                startActivity(new Intent(getActivity(), LoginActivity.class));
+//
+//            }
+//        });
 
         setUpUI();
         return mFragmentContactBinding.getRoot();
