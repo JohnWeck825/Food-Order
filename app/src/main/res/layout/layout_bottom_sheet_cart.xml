@@ -46,7 +46,7 @@
             android:layout_height="190dp"
             android:layout_marginStart="@dimen/define_dimen_10"
             android:layout_marginTop="@dimen/define_dimen_14"
-            android:layout_marginEnd="@dimen/define_dimen_10"
+            android:layout_marginEnd="@dimen/define_dimen_8"
             android:layout_marginBottom="@dimen/define_dimen_10"
             app:cardCornerRadius="@dimen/define_dimen_10"
             app:cardElevation="@dimen/define_dimen_6"
@@ -58,12 +58,11 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/img9"
                 android:scaleType="centerCrop"
-
                 tools:ignore="ContentDescription" />
         </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
 
+    </LinearLayout>
 
 
     <TextView
@@ -81,11 +80,11 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/red"
-        android:layout_marginTop="@dimen/define_dimen_4"
         android:layout_marginStart="@dimen/define_dimen_10"
+        android:layout_marginTop="@dimen/define_dimen_4"
         android:layout_marginEnd="@dimen/define_dimen_10"
-        android:layout_marginBottom="@dimen/define_dimen_4"/>
+        android:layout_marginBottom="@dimen/define_dimen_4"
+        android:background="@color/red" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -143,11 +142,10 @@
                 android:textAlignment="center"
                 android:textColor="@color/item_grid_food_price"
                 android:textSize="20sp" />
+
         </LinearLayout>
 
         <TextView
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:id="@+id/btnAddtoCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -157,6 +155,8 @@
             android:background="@drawable/txtv_add_to_cart_bg"
             android:padding="@dimen/define_dimen_12"
             android:text="@string/add_to_cart_food_details"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 </LinearLayout>

@@ -61,7 +61,8 @@ dependencies {
 
     implementation("de.hdodenhof:circleimageview:3.0.0")
 
-
+//    implementation("com.github.bumptech.gifview:gifview:4.1.0")
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
 
     implementation("androidx.room:room-runtime:2.6.1")
     annotationProcessor("androidx.room:room-compiler:2.6.1")
