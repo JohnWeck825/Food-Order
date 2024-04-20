@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/layout_bottom"
-            android:paddingBottom="@dimen/define_dimen_16"/>
+            android:paddingBottom="@dimen/define_dimen_16" />
     </androidx.core.widget.NestedScrollView>
 
 
@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/define_dimen_10"
+                android:layout_marginBottom="@dimen/define_dimen_4"
                 android:layout_toStartOf="@+id/tv_order_cart"
                 android:orientation="horizontal">
 
